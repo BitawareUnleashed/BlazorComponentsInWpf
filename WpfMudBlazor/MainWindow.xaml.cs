@@ -1,8 +1,9 @@
-﻿using System.Windows;
+﻿using System.Runtime.CompilerServices;
+using System.Windows;
 using Microsoft.Extensions.DependencyInjection;
 using MudBlazor;
 using MudBlazor.Services;
-
+using WpfMudBlazor.Models;
 
 namespace WpfMudBlazor
 {
@@ -11,6 +12,9 @@ namespace WpfMudBlazor
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        IEventAggregator ea;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -18,10 +22,9 @@ namespace WpfMudBlazor
             var serviceCollection = new ServiceCollection();
             serviceCollection.AddWpfBlazorWebView();
             serviceCollection.AddMudServices();
+            serviceCollection.AddSingleton<IEventAggregator, EventAggregator>();
             Resources.Add("services", serviceCollection.BuildServiceProvider());
             
-
-
         }
     }
 }
