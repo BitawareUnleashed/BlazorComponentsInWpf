@@ -8,5 +8,5 @@ namespace WpfMudBlazor.Models;
 
 internal interface ISubscriber<TEventType> 
 {
-    Task OnEventRaised(TEventType e);
+    void OnEventRaised(TEventType e);
 }

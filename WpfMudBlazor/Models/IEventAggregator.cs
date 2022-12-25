@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WpfMudBlazor.Models;
 
-internal interface IEventAggregator
+public interface IEventAggregator
 {
     void PublishEvent<TEventType>(TEventType eventToPublish);
 

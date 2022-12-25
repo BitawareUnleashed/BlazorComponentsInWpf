@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace WpfMudBlazor.Models;
 
 internal class EventAggregator : IEventAggregator
 {
-    private Dictionary<Type, List<WeakReference>> eventSubsribers = new Dictionary<Type, List<WeakReference>>();
+    private readonly Dictionary<Type, List<WeakReference>> eventSubsribers = new Dictionary<Type, List<WeakReference>>();
 
     private readonly object lockSubscriberDictionary = new object();
 
@@ -79,29 +77,25 @@ internal class EventAggregator : IEventAggregator
     #endregion
 
 
-
-
-
-
-
     private void InvokeSubscriberEvent<TEventType>(TEventType eventToPublish, ISubscriber<TEventType> subscriber)
     {
         //Synchronize the invocation of method 
-
-        SynchronizationContext syncContext = SynchronizationContext.Current;
-
-        if (syncContext == null)
+        SynchronizationContext syncContext;
+        if (SynchronizationContext.Current is null)
         {
             syncContext = new SynchronizationContext();
-
-        }//End-if (syncContext == null)
+        }
+        else
+        {
+            syncContext = SynchronizationContext.Current;
+        }
 
         syncContext.Post(s => subscriber.OnEventRaised(eventToPublish), null);
     }
 
     private List<WeakReference> GetSubscriberList(Type subsriberType)
     {
-        List<WeakReference> subsribersList = null;
+        List<WeakReference>? subsribersList = null;
 
         lock (lockSubscriberDictionary)
         {
@@ -110,15 +104,10 @@ internal class EventAggregator : IEventAggregator
             if (!found)
             {
                 //First time create the list.
-
                 subsribersList = new List<WeakReference>();
-
                 this.eventSubsribers.Add(subsriberType, subsribersList);
-
-            }//End-if (!found)
-
-        }//End-lock (lockSubscriberDictionary)
-
+            }
+        }
         return subsribersList;
     }
 }

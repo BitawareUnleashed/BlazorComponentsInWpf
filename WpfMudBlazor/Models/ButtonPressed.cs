@@ -7,5 +7,5 @@ using System.Threading.Tasks;
 namespace WpfMudBlazor.Models;
 internal class ButtonPressed
 {
-
+    public string ButtonName { get; set; }
 }

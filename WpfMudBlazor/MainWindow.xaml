@@ -6,36 +6,76 @@
         xmlns:blazor="clr-namespace:Microsoft.AspNetCore.Components.WebView.Wpf;assembly=Microsoft.AspNetCore.Components.WebView.Wpf"
         xmlns:local="clr-namespace:WpfMudBlazor"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="350" Width="400">
+    <Window.Resources>
+        <!-- This style is used for buttons, to remove the WPF default 'animated' mouse over effect -->
+        <Style x:Key="MyButtonStyle" TargetType="Button">
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="Margin" Value="0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="border" 
+                                BorderThickness="1"
+                                Padding="0,0" 
+                                BorderBrush="DarkGray" 
+                                CornerRadius="2" 
+                                Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#4426DB" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="20" />
             <RowDefinition Height="50" />
             <RowDefinition Height="45" />
-            <RowDefinition Height="142"/>
-            <RowDefinition Height="310*"/>
+            <RowDefinition Height="65"/>
+            <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="192" />
+            <ColumnDefinition Width="5" />
             <ColumnDefinition Width="150" />
-            <ColumnDefinition Width="500" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="150" />
+            <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
-        <Button Grid.Row="0">WPF</Button>
-        <Border Grid.Row="1" Grid.Column="0" BorderBrush="Transparent" BorderThickness="1" CornerRadius="250" >
-            <blazor:BlazorWebView HostPage="wwwroot/index.html" 
-                                  Services="{DynamicResource services}">
-                <blazor:BlazorWebView.RootComponents>
-                    <blazor:RootComponent Selector="#app" ComponentType="{x:Type local:MudButtonWrap}" />
-                </blazor:BlazorWebView.RootComponents>
-            </blazor:BlazorWebView>
+
+        <!--WPF SIDE-->
+        <Button Grid.Column="1" Grid.Row="1" Click="Button_Click"  Style="{StaticResource MyButtonStyle}"
+                Content="{Binding ButtonText}" Foreground="White" 
+                FontSize="16" FontWeight="DemiBold" Background="#FF5D47E0" >
+        </Button>
+
+        <Border Grid.Row="3" Grid.Column="1" BorderBrush="Transparent" BorderThickness="1" CornerRadius="250" >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="14" />
+                    <RowDefinition Height="49" />
+                </Grid.RowDefinitions>
+                <TextBlock FontSize="14" HorizontalAlignment="Left" Margin="5,-3,0,0">Wpf text header</TextBlock>
+                <Border Grid.Row="1" Grid.Column="0" BorderBrush="#FF7B6AF1" BorderThickness="2">
+                    <TextBox TextWrapping="Wrap" Text="" VerticalAlignment="Center" BorderBrush="{x:Null}" FontSize="18"/>
+                </Border>
+
+            </Grid>
         </Border>
 
-        <Border Grid.Row="2" Grid.Column="0" BorderBrush="Transparent" BorderThickness="1" CornerRadius="250" >
-            <blazor:BlazorWebView HostPage="wwwroot/index.html" 
-                                  Services="{DynamicResource services}">
-                <blazor:BlazorWebView.RootComponents>
-                    <blazor:RootComponent Selector="#app" ComponentType="{x:Type local:MudTextFieldWrap}" />
-                </blazor:BlazorWebView.RootComponents>
-            </blazor:BlazorWebView>
+
+        <!--BLAZOR SIDE-->
+        <Border Grid.Row="1" Grid.Column="3" BorderBrush="Transparent" BorderThickness="1" CornerRadius="250" >
+            <local:MudBlazorButtonWrap/>
+        </Border>
+        <Border Grid.Row="3" Grid.Column="3" BorderBrush="Transparent" BorderThickness="1" CornerRadius="250" >
+            <local:WpfTextfieldWtap/>
         </Border>
     </Grid>
 </Window>
