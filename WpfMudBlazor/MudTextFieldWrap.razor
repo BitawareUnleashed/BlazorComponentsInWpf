@@ -1,6 +1,12 @@
 ﻿@using MudBlazor
-@layout MainLayout
 @namespace WpfMudBlazor
 <MudThemeProvider/>
 
-<MudTextField T="string" InputType="InputType.Text" Label="Outlined" Variant="Variant.Outlined"></MudTextField>
+<MudTextField T="string" InputType="InputType.Text" Label="My text field" Variant="Variant.Outlined" @bind-Text="text"></MudTextField>
+@code
+{
+    private string text = string.Empty;
+
+
+
+}
