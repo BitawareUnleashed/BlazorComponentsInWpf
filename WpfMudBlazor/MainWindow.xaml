@@ -18,8 +18,8 @@
                         <Border Name="border" 
                                 BorderThickness="1"
                                 Padding="0,0" 
-                                BorderBrush="DarkGray" 
-                                CornerRadius="2" 
+                                BorderBrush="Transparent" 
+                                CornerRadius="4" 
                                 Background="{TemplateBinding Background}">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                         </Border>
