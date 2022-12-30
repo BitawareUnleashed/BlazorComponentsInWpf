@@ -1,5 +1,7 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,11 +20,35 @@ namespace WpfMudBlazor
     /// <summary>
     /// Interaction logic for UserControl1.xaml
     /// </summary>
-    public partial class MudBlazorButtonWrap : UserControl
+    public partial class MudBlazorButtonWrap : UserControl, INotifyPropertyChanged
     {
+        private string text = string.Empty;
+
+        public string Text
+        {
+            get => text;
+            set
+            {
+                text = value;
+                buttonParameters.Parameters = new Dictionary<string, object>()
+                {
+                    { "ButtonText", Text }
+                }!;
+                OnPropertyChanged(nameof(Text));
+            }
+        }
+
         public MudBlazorButtonWrap()
         {
             InitializeComponent();
+            this.DataContext = this;
+
         }
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+
+        private void OnPropertyChanged(string propertyName) =>
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+
     }
 }

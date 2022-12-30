@@ -54,8 +54,6 @@ namespace WpfMudBlazor
                     //    options.UseSqlServer(configuration.GetConnectionString("Default")));
                 })
                 .Build();
-
-            
         }
 
         protected override async void OnStartup(StartupEventArgs e)
@@ -74,7 +72,5 @@ namespace WpfMudBlazor
 
             base.OnExit(e);
         }
-
-
     }
 }

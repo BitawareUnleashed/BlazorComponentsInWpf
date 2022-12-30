@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="WpfMudBlazor.WpfTextfieldWtap"
+﻿<UserControl x:Class="WpfMudBlazor.WpfTextfieldWrap"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -11,7 +11,7 @@
         <wpf:BlazorWebView HostPage="wwwroot/index.html" 
                               Services="{DynamicResource services}">
             <wpf:BlazorWebView.RootComponents>
-                <wpf:RootComponent Selector="#app" ComponentType="{x:Type local:MudTextFieldWrap}" />
+                <wpf:RootComponent x:Name="textFieldParameters" Selector="#app" ComponentType="{x:Type local:MudTextFieldWrap}" />
             </wpf:BlazorWebView.RootComponents>
         </wpf:BlazorWebView>
     </Grid>

@@ -35,11 +35,14 @@
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="20" />
             <RowDefinition Height="50" />
-            <RowDefinition Height="45" />
-            <RowDefinition Height="65"/>
-            <RowDefinition Height="1*"/>
+            <RowDefinition Height="68" />
+            <RowDefinition Height="68" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="9"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="96"/>
+            <RowDefinition Height="0*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="5" />
@@ -50,32 +53,69 @@
         </Grid.ColumnDefinitions>
 
         <!--WPF SIDE-->
-        <Button Grid.Column="1" Grid.Row="1" Click="Button_Click"  Style="{StaticResource MyButtonStyle}"
-                Content="{Binding ButtonText}" Foreground="White" 
-                FontSize="16" FontWeight="DemiBold" Background="#FF5D47E0" >
-        </Button>
+        <TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4"  Text="{Binding Text}"></TextBlock>
 
-        <Border Grid.Row="3" Grid.Column="1" BorderBrush="Transparent" BorderThickness="1" CornerRadius="250" >
+        <Border Grid.Row="1" Grid.Column="1" BorderBrush="Transparent" BorderThickness="1" CornerRadius="250" >
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="14" />
                     <RowDefinition Height="49" />
                 </Grid.RowDefinitions>
-                <TextBlock FontSize="14" HorizontalAlignment="Left" Margin="5,-3,0,0">Wpf text header</TextBlock>
-                <Border Grid.Row="1" Grid.Column="0" BorderBrush="#FF7B6AF1" BorderThickness="2">
-                    <TextBox TextWrapping="Wrap" Text="" VerticalAlignment="Center" BorderBrush="{x:Null}" FontSize="18"/>
-                </Border>
 
+                <Border Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" BorderBrush="#FF7B6AF1" BorderThickness="2" Margin="0,7,0,0" CornerRadius="3">
+                    <TextBox TextWrapping="Wrap" Text="{Binding Username}" 
+                             VerticalAlignment="Center" BorderBrush="{x:Null}" FontSize="18"/>
+                </Border>
+                <TextBlock FontSize="13" HorizontalAlignment="Left" Margin="10,-3,0,0" Padding="5,0,5,0" 
+                            Foreground="#FF7B6AF1" Background="White">Username</TextBlock>
             </Grid>
         </Border>
 
+        <Border Grid.Row="2" Grid.Column="1" BorderBrush="Transparent" BorderThickness="1" CornerRadius="250" >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="14" />
+                    <RowDefinition Height="49" />
+                </Grid.RowDefinitions>
 
-        <!--BLAZOR SIDE-->
+                <Border Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" BorderBrush="#FF7B6AF1" BorderThickness="2" Margin="0,7,0,0" CornerRadius="3">
+                    <PasswordBox x:Name="PasswordBox" VerticalAlignment="Center" BorderBrush="{x:Null}" PasswordChanged="PasswordBox_OnPasswordChanged"
+                                 FontSize="18" />
+                </Border>
+                <TextBlock FontSize="13" HorizontalAlignment="Left" Margin="10,-3,0,0" Padding="5,0,5,0" 
+                           Foreground="#FF7B6AF1" Background="White">Password</TextBlock>
+            </Grid>
+        </Border>
+
+        <Button Grid.Column="1" Grid.Row="3" Click="Button_Click"  Style="{StaticResource MyButtonStyle}"
+                Content="{Binding ButtonText}" Foreground="White" 
+                FontSize="16" FontWeight="DemiBold" Background="#FF5D47E0" >
+        </Button>
+
+        <Button Grid.Column="1" Grid.Row="5" Click="ButtonBase_OnClick"  
+                Style="{StaticResource MyButtonStyle}"
+                Content="{Binding ButtonLogoutText}" Foreground="White" 
+                FontSize="16" FontWeight="DemiBold" Background="#FF5D47E0" >
+        </Button>
+
+
+
+<!--BLAZOR SIDE-->
         <Border Grid.Row="1" Grid.Column="3" BorderBrush="Transparent" BorderThickness="1" CornerRadius="250" >
-            <local:MudBlazorButtonWrap/>
+            <local:WpfTextfieldWrap Label="Username"/>
         </Border>
+
+        <Border Grid.Row="2" Grid.Column="3" BorderBrush="Transparent" BorderThickness="1" CornerRadius="250" >
+            <local:WpfTextfieldWrap Label="Password" InputType="Password"/>
+        </Border>
+
         <Border Grid.Row="3" Grid.Column="3" BorderBrush="Transparent" BorderThickness="1" CornerRadius="250" >
-            <local:WpfTextfieldWtap/>
+            <local:MudBlazorButtonWrap Text="Login"/>
         </Border>
+
+        <Border Grid.Row="5" Grid.Column="3" BorderBrush="Transparent" BorderThickness="1" CornerRadius="250" >
+            <local:MudBlazorButtonWrap Text="Logout"/>
+        </Border>
+
     </Grid>
 </Window>

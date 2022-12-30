@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Components;
 using WpfMudBlazor.Models;
 using WpfMudBlazor.Services;
 
@@ -14,13 +15,12 @@ public partial class MudButtonWrap
 {
     private IEventAggregator? eventAggregator;
     private EventAggregatorService? eventAggregatorService;
-    private string buttonName = "My Button";
+
+    [Parameter] public string ButtonText { get; set; } = "-";
+
+
     protected override void OnInitialized()
     {
-        if (eventAggregator is not null)
-        {
-            eventAggregator.PublishEvent(new ButtonPressed() { ButtonName = "Blazor" });
-        }
         base.OnInitialized();
     }
 
@@ -28,7 +28,7 @@ public partial class MudButtonWrap
     {
         if (firstRender)
         {
-            await JSRuntime.InvokeVoidAsync("RegisterWPFApp", DotNetObjectReference.Create(this));
+            //await JSRuntime.InvokeVoidAsync("RegisterWPFApp", DotNetObjectReference.Create(this));
 
             eventAggregator = App.AppHost.Services.GetRequiredService<IEventAggregator>();
             eventAggregatorService = App.AppHost.Services.GetRequiredService<EventAggregatorService>();
@@ -38,12 +38,21 @@ public partial class MudButtonWrap
 
     private void EventAggregatorService_OnButtonPressed(object? sender, string e)
     {
-        buttonName = e;
+        //ButtonText = e;
         StateHasChanged();
     }
 
     private void ButtonClicked()
     {
-        eventAggregator?.PublishEvent(new ButtonPressed() { ButtonName = "Blazor" });
+        switch (ButtonText)
+        {
+            case "Login":
+                eventAggregator?.PublishEvent(new ButtonLogin($"User logged in from Blazor"));
+                break;
+            case "Logout":
+                eventAggregator?.PublishEvent(new ButtonLogin($"User logged out from Blazor"));
+                break;
+        }
+        
     }
 }

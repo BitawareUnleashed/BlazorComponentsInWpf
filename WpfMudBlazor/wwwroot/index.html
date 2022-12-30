@@ -18,7 +18,7 @@
 </head>
 
 <body>
-    <div id="app">Loading...</div>
+    <div id="app">..</div>
 
     <div id="blazor-error-ui">
         An unhandled error has occurred.
@@ -32,20 +32,20 @@
 
     <script>
 
-        window.GetWindowWidth = () => {
-            return window.innerWidth;
-        }
+        //window.GetWindowWidth = () => {
+        //    return window.innerWidth;
+        //}
 
-        var dotNetHelper;
+        //var dotNetHelper;
 
-        window.RegisterWPFApp = (dotNetRef) => {
-            dotNetHelper = dotNetRef;
-            window.addEventListener("resize", handleResize);
-        }
+        //window.RegisterWPFApp = (dotNetRef) => {
+        //    dotNetHelper = dotNetRef;
+        //    window.addEventListener("resize", handleResize);
+        //}
 
-        function handleResize() {
-            dotNetHelper.invokeMethodAsync("WindowResized", window.innerWidth, window.innerHeight);
-        }
+        //function handleResize() {
+        //    dotNetHelper.invokeMethodAsync("WindowResized", window.innerWidth, window.innerHeight);
+        //}
     </script>
 </body>
 
