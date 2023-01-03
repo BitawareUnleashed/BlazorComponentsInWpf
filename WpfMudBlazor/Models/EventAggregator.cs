@@ -7,18 +7,15 @@ namespace WpfMudBlazor.Models;
 
 internal class EventAggregator : IEventAggregator
 {
-    private readonly Dictionary<Type, List<WeakReference>> eventSubsribers = new Dictionary<Type, List<WeakReference>>();
+    private readonly Dictionary<Type, List<WeakReference>> subscribersListByType = new Dictionary<Type, List<WeakReference>>();
 
     private readonly object lockSubscriberDictionary = new object();
 
-    public EventAggregator()
-    {
-
-    }
 
     #region IEventAggregator
 
-    public void PublishEvent<TEventType>(TEventType eventToPublish)
+    /// <inheritdoc cref="IEventAggregator"/>
+    public void Publish<TEventType>(TEventType eventToPublish)
     {
         var subsriberType = typeof(ISubscriber<>).MakeGenericType(typeof(TEventType));
 
@@ -37,7 +34,6 @@ internal class EventAggregator : IEventAggregator
             else
             {
                 subsribersToBeRemoved.Add(weakSubsriber);
-
             }
         }
 
@@ -49,13 +45,13 @@ internal class EventAggregator : IEventAggregator
                 foreach (var remove in subsribersToBeRemoved)
                 {
                     subscribers.Remove(remove);
-
                 }
             }
         }
     }
 
-    public void SubsribeEvent(object subscriber)
+    /// <inheritdoc cref="IEventAggregator"/>
+    public void Subscribe(object subscriber)
     {
         lock (lockSubscriberDictionary)
         {
@@ -69,14 +65,18 @@ internal class EventAggregator : IEventAggregator
                 List<WeakReference> subscribers = GetSubscriberList(subsriberType);
 
                 subscribers.Add(weakReference);
-
             }
         }
     }
 
     #endregion
 
-
+    /// <summary>
+    /// Invokes the subscriber event.
+    /// </summary>
+    /// <typeparam name="TEventType">The type of the event type.</typeparam>
+    /// <param name="eventToPublish">The event to publish.</param>
+    /// <param name="subscriber">The subscriber.</param>
     private void InvokeSubscriberEvent<TEventType>(TEventType eventToPublish, ISubscriber<TEventType> subscriber)
     {
         //Synchronize the invocation of method 
@@ -99,13 +99,13 @@ internal class EventAggregator : IEventAggregator
 
         lock (lockSubscriberDictionary)
         {
-            bool found = this.eventSubsribers.TryGetValue(subsriberType, out subsribersList);
+            bool found = subscribersListByType.TryGetValue(subsriberType, out subsribersList);
 
             if (!found)
             {
                 //First time create the list.
                 subsribersList = new List<WeakReference>();
-                this.eventSubsribers.Add(subsriberType, subsribersList);
+                subscribersListByType.Add(subsriberType, subsribersList);
             }
         }
         return subsribersList;
