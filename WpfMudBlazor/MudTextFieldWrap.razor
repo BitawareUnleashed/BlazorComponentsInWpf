@@ -51,10 +51,10 @@
         switch (InputType)
         {
             case InputType.Text:
-                eventAggregator?.PublishEvent(new TextChanged(TextValue));
+                eventAggregator?.Publish(new TextChanged(TextValue));
                 break;
             case InputType.Password:
-                eventAggregator?.PublishEvent(new PasswordChanged(TextValue));
+                eventAggregator?.Publish(new PasswordChanged(TextValue));
                 break;
             default:
                 break;

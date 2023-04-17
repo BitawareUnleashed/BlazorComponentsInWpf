@@ -33,7 +33,7 @@ namespace WpfMudBlazor
             set
             {
                 username = value;
-                eventAggregator?.PublishEvent(new TextChanged(Username));
+                eventAggregator?.Publish(new TextChanged(Username));
                 OnPropertyChanged(nameof(Username));
             }
         }
@@ -44,7 +44,7 @@ namespace WpfMudBlazor
             set
             {
                 password = value;
-                eventAggregator?.PublishEvent(new PasswordChanged(Password));
+                eventAggregator?.Publish(new PasswordChanged(Password));
                 OnPropertyChanged(nameof(Password));
             }
         }
@@ -120,7 +120,7 @@ namespace WpfMudBlazor
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            eventAggregator?.PublishEvent(new ButtonLogin("User logged in from WPF"));
+            eventAggregator?.Publish(new ButtonLogin("User logged in from WPF"));
         }
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
@@ -128,7 +128,7 @@ namespace WpfMudBlazor
             Username = string.Empty;
             Password=string.Empty;
 
-            eventAggregator?.PublishEvent(new ButtonLogout("User logged out from WPF"));
+            eventAggregator?.Publish(new ButtonLogout("User logged out from WPF"));
         }
 
 
