@@ -7,7 +7,9 @@
 
 <MudThemeProvider />
 
-<MudTextField T="string" InputType="@InputType" Label="@LabelText" Variant="Variant.Outlined" @bind-Text="TextValue"></MudTextField>
+<MudTextField T="string" InputType="@InputType" AdornmentText="" Adornment="Adornment.Start" Label="@LabelText" Variant="Variant.Outlined" @bind-Text="TextValue"></MudTextField>
+
+
 @code
 {
     private IEventAggregator? eventAggregator;
@@ -34,8 +36,6 @@
     {
         if (firstRender)
         {
-            //await JSRuntime.InvokeVoidAsync("RegisterWPFApp", DotNetObjectReference.Create(this));
-
             eventAggregator = App.AppHost.Services.GetRequiredService<IEventAggregator>();
             eventAggregatorService = App.AppHost.Services.GetRequiredService<EventAggregatorService>();
             eventAggregatorService.OnButtonPressed += EventAggregatorService_OnButtonPressed;
