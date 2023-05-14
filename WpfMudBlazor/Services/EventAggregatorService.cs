@@ -12,7 +12,8 @@ public class EventAggregatorService :
     ISubscriber<ButtonCancel>,
     ISubscriber<TextChanged>,
     ISubscriber<PasswordChanged>,
-    ISubscriber<ButtonClick>
+    ISubscriber<ButtonClick>,
+    ISubscriber<NextCustomerRequest>
 {
 
     private readonly IEventAggregator? eventAggregator;
@@ -33,6 +34,11 @@ public class EventAggregatorService :
 
     void ISubscriber<ButtonClick>.OnEventRaised(ButtonClick e) => OnButtonClickedChanged?.Invoke(this, e.Text);
 
+    void ISubscriber<NextCustomerRequest>.OnEventRaised(NextCustomerRequest e)
+    {
+        // Recuperare il customer
+        OnCustomerChanged?.Invoke(this, new Customer());
+    }
 
     public EventAggregatorService(IEventAggregator ea)
     {
@@ -44,5 +50,7 @@ public class EventAggregatorService :
     {
         eventAggregator?.Publish(p);
     }
+
+    
 }
 
