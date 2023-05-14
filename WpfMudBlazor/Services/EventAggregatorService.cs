@@ -21,6 +21,7 @@ public class EventAggregatorService :
     public event EventHandler<string>? OnTextChanged;
     public event EventHandler<string>? OnPasswordChanged;
     public event EventHandler<string>? OnButtonClickedChanged;
+    public event EventHandler<Customer>? OnCustomerChanged;
 
     void ISubscriber<ButtonConfirm>.OnEventRaised(ButtonConfirm e) => OnButtonPressed?.Invoke(this, e.Text);
 

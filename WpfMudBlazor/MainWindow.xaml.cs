@@ -26,6 +26,18 @@ namespace WpfMudBlazor
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
+        private Customer customer = new();
+        public Customer Customer { 
+            get
+            {
+                return customer;
+            }
+            set
+            {
+                customer = value;
+                OnPropertyChanged(nameof(Name));
+            }
+        }
 
         public string Name
         {
@@ -85,15 +97,6 @@ namespace WpfMudBlazor
             InitializeComponent();
 
             this.DataContext = this;
-
-            //eventAggregator = App.AppHost.Services.GetRequiredService<IEventAggregator>();
-            //var serviceCollection = new ServiceCollection();
-            //serviceCollection.AddWpfBlazorWebView();
-            //serviceCollection.AddMudServices();
-            //serviceCollection.AddSingleton<IEventAggregator, EventAggregator>();
-            //Resources.Add("services", serviceCollection.BuildServiceProvider());
-
-            //eventAggregator = App.AppHost.Services.GetRequiredService<IEventAggregator>();
             eventAggregatorService = App.AppHost.Services.GetRequiredService<EventAggregatorService>();
             eventAggregatorService.OnButtonPressed += EventAggregatorService_OnButtonPressed;
             eventAggregatorService.OnTextChanged += EventAggregatorService_OnTextChanged;
