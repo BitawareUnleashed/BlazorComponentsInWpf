@@ -20,7 +20,7 @@ namespace WpfMudBlazor
         private string text = "No user logged in";
 
         private string username = string.Empty;
-        private string password = string.Empty;
+        private string surname = string.Empty;
 
         private string buttonText = "Conferma";
 
@@ -38,14 +38,14 @@ namespace WpfMudBlazor
             }
         }
 
-        public string Password
+        public string Surname
         {
-            get => password;
+            get => surname;
             set
             {
-                password = value;
-                eventAggregatorService?.Publish(new PasswordChanged(Password));
-                OnPropertyChanged(nameof(Password));
+                surname = value;
+                eventAggregatorService?.Publish(new TextChanged(Surname));
+                OnPropertyChanged(nameof(Surname));
             }
         }
         
@@ -108,7 +108,7 @@ namespace WpfMudBlazor
 
         private void EventAggregatorService_OnPasswordChanged(object? sender, string e)
         {
-            if (e != Password) Password = e;
+            if (e != Surname) Surname = e;
         }
 
         private void EventAggregatorService_OnTextChanged(object? sender, string e)
@@ -118,7 +118,7 @@ namespace WpfMudBlazor
 
         private void EventAggregatorService_OnButtonPressed(object? sender, string e)
         {
-            Text = $"{e} with Name '{Name}' and password '{Password}'";
+            Text = $"{e} with Name '{Name}' and surname '{Surname}'";
         }
 
         
@@ -131,7 +131,7 @@ namespace WpfMudBlazor
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
             Name = string.Empty;
-            Password=string.Empty;
+            Surname=string.Empty;
 
             eventAggregatorService?.Publish(new ButtonCancel("User logged out from WPF"));
         }
@@ -144,12 +144,18 @@ namespace WpfMudBlazor
 
         private void PasswordBox_OnPasswordChanged(object sender, RoutedEventArgs e)
         {
-            Password = PasswordBox.Password;
+            //Surname = PasswordBox.Surname;
         }
+
+        bool isEdit = true;
+        bool isAdd = false;
+        bool isDelete = false;
+        bool isSave = false;
+
 
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
-
+            isEdit = !isEdit;
         }
 
         private void Add_Click(object sender, RoutedEventArgs e)
