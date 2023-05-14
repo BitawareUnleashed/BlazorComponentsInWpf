@@ -7,39 +7,41 @@ using WpfMudBlazor.Models;
 
 namespace WpfMudBlazor.Services;
 
-public class EventAggregatorService : ISubscriber<ButtonLogin>, ISubscriber<ButtonLogout>, ISubscriber<TextChanged>, ISubscriber<PasswordChanged>
+public class EventAggregatorService :
+    ISubscriber<ButtonConfirm>,
+    ISubscriber<ButtonCancel>,
+    ISubscriber<TextChanged>,
+    ISubscriber<PasswordChanged>,
+    ISubscriber<ButtonClick>
 {
 
-    private readonly IEventAggregator eventAggregator;
+    private readonly IEventAggregator? eventAggregator;
 
-    public event EventHandler<string> OnButtonPressed;
-    public event EventHandler<string> OnTextChanged;
-    public event EventHandler<string> OnPasswordChanged;
+    public event EventHandler<string>? OnButtonPressed;
+    public event EventHandler<string>? OnTextChanged;
+    public event EventHandler<string>? OnPasswordChanged;
+    public event EventHandler<string>? OnButtonClickedChanged;
 
-    void ISubscriber<ButtonLogin>.OnEventRaised(ButtonLogin e)
-    {
-        OnButtonPressed?.Invoke(this, e.Text);
-    }
+    void ISubscriber<ButtonConfirm>.OnEventRaised(ButtonConfirm e) => OnButtonPressed?.Invoke(this, e.Text);
 
-    void ISubscriber<ButtonLogout>.OnEventRaised(ButtonLogout e)
-    {
-        OnButtonPressed?.Invoke(this, e.Text);
-    }
+    void ISubscriber<ButtonCancel>.OnEventRaised(ButtonCancel e) => OnButtonPressed?.Invoke(this, e.Text);
 
-    void ISubscriber<TextChanged>.OnEventRaised(TextChanged e)
-    {
-        OnTextChanged?.Invoke(this, e.Text);
-    }
-    void ISubscriber<PasswordChanged>.OnEventRaised(PasswordChanged e)
-    {
-        OnPasswordChanged?.Invoke(this, e.Text);
-    }
+    void ISubscriber<TextChanged>.OnEventRaised(TextChanged e) => OnTextChanged?.Invoke(this, e.Text);
+
+    void ISubscriber<PasswordChanged>.OnEventRaised(PasswordChanged e) => OnPasswordChanged?.Invoke(this, e.Text);
+
+    void ISubscriber<ButtonClick>.OnEventRaised(ButtonClick e) => OnButtonClickedChanged?.Invoke(this, e.Text);
 
 
     public EventAggregatorService(IEventAggregator ea)
     {
         eventAggregator = ea;
         eventAggregator.Subscribe(this);
+    }
+
+    public void Publish<T>(T p)
+    {
+        eventAggregator?.Publish(p);
     }
 }
 

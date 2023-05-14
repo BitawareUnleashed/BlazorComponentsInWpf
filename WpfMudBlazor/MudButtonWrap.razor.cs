@@ -3,16 +3,50 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using WpfMudBlazor.Models;
 using WpfMudBlazor.Services;
+using MudBlazor;
 
 namespace WpfMudBlazor;
 
 public partial class MudButtonWrap
 {
-    private IEventAggregator? eventAggregator;
     private EventAggregatorService? eventAggregatorService;
+
+    private string mudImage = string.Empty;
+    private string style = "width:148px; height:48px";
 
     [Parameter] public string ButtonText { get; set; } = "-";
 
+    [Parameter] public string ButtonId { get; set; } = "-";
+
+
+    private string buttonImage = "-";
+    [Parameter]
+    public string ButtonImage
+    {
+        get
+        {
+            return buttonImage;
+        }
+        set
+        {
+            buttonImage = value;
+            switch (buttonImage)
+            {
+                case "Edit":
+                    mudImage = Icons.Material.Filled.Edit;
+                    break;
+                case "Add":
+                    break;
+                case "Delete":
+                    break;
+                case "Save":
+                    break;
+                default:
+                    break;
+            }
+            style = "width:48px; height:48px";
+        }
+    }
 
     protected override void OnInitialized()
     {
@@ -23,7 +57,6 @@ public partial class MudButtonWrap
     {
         if (firstRender)
         {
-            eventAggregator = App.AppHost.Services.GetRequiredService<IEventAggregator>();
             eventAggregatorService = App.AppHost.Services.GetRequiredService<EventAggregatorService>();
             eventAggregatorService.OnButtonPressed += EventAggregatorService_OnButtonPressed;
         }
@@ -36,15 +69,15 @@ public partial class MudButtonWrap
 
     private void ButtonClicked()
     {
-        switch (ButtonText)
+        switch (ButtonId)
         {
-            case "Login":
-                eventAggregator?.Publish(new ButtonLogin($"User logged in from Blazor"));
+            case "cancel-button":
+                eventAggregatorService?.Publish(new ButtonCancel($"User logged in from Blazor"));
                 break;
-            case "Logout":
-                eventAggregator?.Publish(new ButtonLogin($"User logged out from Blazor"));
+            case "confirm-button":
+                eventAggregatorService?.Publish(new ButtonConfirm($"User logged out from Blazor"));
                 break;
         }
-        
+
     }
 }

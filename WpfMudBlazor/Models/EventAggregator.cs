@@ -74,9 +74,9 @@ internal class EventAggregator : IEventAggregator
     /// <summary>
     /// Invokes the subscriber event.
     /// </summary>
-    /// <typeparam name="TEventType">The type of the event type.</typeparam>
-    /// <param name="eventToPublish">The event to publish.</param>
-    /// <param name="subscriber">The subscriber.</param>
+    /// <typeparam id="TEventType">The type of the event type.</typeparam>
+    /// <param id="eventToPublish">The event to publish.</param>
+    /// <param id="subscriber">The subscriber.</param>
     private void InvokeSubscriberEvent<TEventType>(TEventType eventToPublish, ISubscriber<TEventType> subscriber)
     {
         //Synchronize the invocation of method 

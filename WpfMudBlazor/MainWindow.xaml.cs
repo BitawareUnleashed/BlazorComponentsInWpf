@@ -14,7 +14,7 @@ namespace WpfMudBlazor
     /// </summary>
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
-        private IEventAggregator? eventAggregator;
+        //private IEventAggregator? eventAggregator;
         private EventAggregatorService? eventAggregatorService;
 
         private string text = "No user logged in";
@@ -22,19 +22,19 @@ namespace WpfMudBlazor
         private string username = string.Empty;
         private string password = string.Empty;
 
-        private string buttonText = "LOGIN";
+        private string buttonText = "Conferma";
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
 
-        public string Username
+        public string Name
         {
             get => username;
             set
             {
                 username = value;
-                eventAggregator?.Publish(new TextChanged(Username));
-                OnPropertyChanged(nameof(Username));
+                eventAggregatorService?.Publish(new TextChanged(Name));
+                OnPropertyChanged(nameof(Name));
             }
         }
 
@@ -44,7 +44,7 @@ namespace WpfMudBlazor
             set
             {
                 password = value;
-                eventAggregator?.Publish(new PasswordChanged(Password));
+                eventAggregatorService?.Publish(new PasswordChanged(Password));
                 OnPropertyChanged(nameof(Password));
             }
         }
@@ -59,7 +59,7 @@ namespace WpfMudBlazor
             }
         }
 
-        private string buttonLogoutText = "LOGOUT";
+        private string buttonLogoutText = "Annulla";
         public string ButtonLogoutText
         {
             get => buttonLogoutText;
@@ -86,19 +86,24 @@ namespace WpfMudBlazor
 
             this.DataContext = this;
 
-            eventAggregator = App.AppHost.Services.GetRequiredService<IEventAggregator>();
-
+            //eventAggregator = App.AppHost.Services.GetRequiredService<IEventAggregator>();
             //var serviceCollection = new ServiceCollection();
             //serviceCollection.AddWpfBlazorWebView();
             //serviceCollection.AddMudServices();
             //serviceCollection.AddSingleton<IEventAggregator, EventAggregator>();
             //Resources.Add("services", serviceCollection.BuildServiceProvider());
 
-            eventAggregator = App.AppHost.Services.GetRequiredService<IEventAggregator>();
+            //eventAggregator = App.AppHost.Services.GetRequiredService<IEventAggregator>();
             eventAggregatorService = App.AppHost.Services.GetRequiredService<EventAggregatorService>();
-            eventAggregatorService.OnButtonPressed += EventAggregatorService_OnButtonPressed; ;
+            eventAggregatorService.OnButtonPressed += EventAggregatorService_OnButtonPressed;
             eventAggregatorService.OnTextChanged += EventAggregatorService_OnTextChanged;
             eventAggregatorService.OnPasswordChanged += EventAggregatorService_OnPasswordChanged;
+            eventAggregatorService.OnButtonClickedChanged += EventAggregatorService_OnButtonClickedChanged;
+        }
+
+        private void EventAggregatorService_OnButtonClickedChanged(object? sender, string e)
+        {
+            Text = $"User clicked {e}'";
         }
 
         private void EventAggregatorService_OnPasswordChanged(object? sender, string e)
@@ -108,27 +113,27 @@ namespace WpfMudBlazor
 
         private void EventAggregatorService_OnTextChanged(object? sender, string e)
         {
-            if (e != Username) Username = e;
+            if (e != Name) Name = e;
         }
 
         private void EventAggregatorService_OnButtonPressed(object? sender, string e)
         {
-            Text = $"{e} with Username '{Username}' and password '{Password}'";
+            Text = $"{e} with Name '{Name}' and password '{Password}'";
         }
 
         
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            eventAggregator?.Publish(new ButtonLogin("User logged in from WPF"));
+            eventAggregatorService?.Publish(new ButtonConfirm("User logged in from WPF"));
         }
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-            Username = string.Empty;
+            Name = string.Empty;
             Password=string.Empty;
 
-            eventAggregator?.Publish(new ButtonLogout("User logged out from WPF"));
+            eventAggregatorService?.Publish(new ButtonCancel("User logged out from WPF"));
         }
 
 
@@ -140,6 +145,26 @@ namespace WpfMudBlazor
         private void PasswordBox_OnPasswordChanged(object sender, RoutedEventArgs e)
         {
             Password = PasswordBox.Password;
+        }
+
+        private void Edit_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Add_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Delete_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Save_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

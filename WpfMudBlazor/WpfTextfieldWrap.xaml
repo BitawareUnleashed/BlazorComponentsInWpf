@@ -11,7 +11,8 @@
         <wpf:BlazorWebView HostPage="wwwroot/index.html" 
                               Services="{DynamicResource services}">
             <wpf:BlazorWebView.RootComponents>
-                <wpf:RootComponent x:Name="textFieldParameters" Selector="#app" ComponentType="{x:Type local:MudTextFieldWrap}" />
+                <wpf:RootComponent x:Name="textFieldParameters" Selector="#app" 
+                                   ComponentType="{x:Type local:MudTextFieldWrap}" />
             </wpf:BlazorWebView.RootComponents>
         </wpf:BlazorWebView>
     </Grid>

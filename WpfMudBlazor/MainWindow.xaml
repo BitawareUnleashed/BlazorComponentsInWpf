@@ -6,7 +6,7 @@
         xmlns:blazor="clr-namespace:Microsoft.AspNetCore.Components.WebView.Wpf;assembly=Microsoft.AspNetCore.Components.WebView.Wpf"
         xmlns:local="clr-namespace:WpfMudBlazor"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="400">
+        Title="MainWindow" Height="550" Width="900">
     <Window.Resources>
         <!-- This style is used for buttons, to remove the WPF default 'animated' mouse over effect -->
         <Style x:Key="MyButtonStyle" TargetType="Button">
@@ -35,27 +35,40 @@
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="5"/>
+            <RowDefinition Height="68" />
+            <RowDefinition Height="68" />
             <RowDefinition Height="68" />
             <RowDefinition Height="68" />
             <RowDefinition Height="50" />
-            <RowDefinition Height="9"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="15"/>
             <RowDefinition Height="50"/>
             <RowDefinition Height="96"/>
             <RowDefinition Height="0*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="5" />
+            <ColumnDefinition Width="7" />
             <ColumnDefinition Width="150" />
-            <ColumnDefinition Width="20" />
-            <ColumnDefinition Width="150" />
-            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="80"/>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="80"/>
+            <ColumnDefinition Width="62*"/>
         </Grid.ColumnDefinitions>
 
         <!--WPF SIDE-->
-        <TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4"  Text="{Binding Text}"></TextBlock>
+        <TextBlock Grid.Row="0" Grid.Column="4" Grid.ColumnSpan="2"  Text="{Binding Text}" Grid.RowSpan="2"></TextBlock>
 
-        <Border Grid.Row="1" Grid.Column="1" BorderBrush="Transparent" BorderThickness="1" CornerRadius="250" >
+
+
+
+        <Border Grid.Row="2" Grid.Column="1" BorderBrush="Transparent" BorderThickness="1" CornerRadius="250" >
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="14" />
@@ -63,15 +76,15 @@
                 </Grid.RowDefinitions>
 
                 <Border Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" BorderBrush="#FF7B6AF1" BorderThickness="2" Margin="0,7,0,0" CornerRadius="3">
-                    <TextBox TextWrapping="Wrap" Text="{Binding Username}" 
+                    <TextBox TextWrapping="Wrap" Text="{Binding Name}" 
                              VerticalAlignment="Center" BorderBrush="{x:Null}" FontSize="18"/>
                 </Border>
                 <TextBlock FontSize="13" HorizontalAlignment="Left" Margin="10,-3,0,0" Padding="5,0,5,0" 
-                            Foreground="#FF7B6AF1" Background="White">Username</TextBlock>
+                            Foreground="#FF7B6AF1" Background="White">Name</TextBlock>
             </Grid>
         </Border>
 
-        <Border Grid.Row="2" Grid.Column="1" BorderBrush="Transparent" BorderThickness="1" CornerRadius="250" >
+        <Border Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" BorderBrush="Transparent" BorderThickness="1" CornerRadius="250"  Margin="10,0,0,0" >
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="14" />
@@ -83,39 +96,188 @@
                                  FontSize="18" />
                 </Border>
                 <TextBlock FontSize="13" HorizontalAlignment="Left" Margin="10,-3,0,0" Padding="5,0,5,0" 
-                           Foreground="#FF7B6AF1" Background="White">Password</TextBlock>
+                           Foreground="#FF7B6AF1" Background="White">Surname</TextBlock>
             </Grid>
         </Border>
 
-        <Button Grid.Column="1" Grid.Row="3" Click="Button_Click"  Style="{StaticResource MyButtonStyle}"
-                Content="{Binding ButtonText}" Foreground="White" 
-                FontSize="16" FontWeight="DemiBold" Background="#FF5D47E0" >
+        <Border Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" BorderBrush="Transparent" BorderThickness="1" CornerRadius="250" >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="14" />
+                    <RowDefinition Height="49" />
+                </Grid.RowDefinitions>
+
+                <Border Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" BorderBrush="#FF7B6AF1" BorderThickness="2" Margin="0,7,0,0" CornerRadius="3">
+                    <PasswordBox x:Name="Address" VerticalAlignment="Center" BorderBrush="{x:Null}" PasswordChanged="PasswordBox_OnPasswordChanged"
+                                 FontSize="18" />
+                </Border>
+                <TextBlock FontSize="13" HorizontalAlignment="Left" Margin="10,-3,0,0" Padding="5,0,5,0" 
+                           Foreground="#FF7B6AF1" Background="White">Address</TextBlock>
+            </Grid>
+        </Border>
+
+        <Border Grid.Row="4" Grid.Column="1" BorderBrush="Transparent" BorderThickness="1" CornerRadius="250" >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="14" />
+                    <RowDefinition Height="49" />
+                </Grid.RowDefinitions>
+
+                <Border Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" BorderBrush="#FF7B6AF1" BorderThickness="2" Margin="0,7,0,0" CornerRadius="3">
+                    <PasswordBox x:Name="Number" VerticalAlignment="Center" BorderBrush="{x:Null}" PasswordChanged="PasswordBox_OnPasswordChanged"
+                                 FontSize="18" />
+                </Border>
+                <TextBlock FontSize="13" HorizontalAlignment="Left" Margin="10,-3,0,0" Padding="5,0,5,0" 
+                           Foreground="#FF7B6AF1" Background="White">Number</TextBlock>
+            </Grid>
+        </Border>
+
+        <Border Grid.Row="4" Grid.Column="2" BorderBrush="Transparent" BorderThickness="1" CornerRadius="250" Margin="10,0,0,0" >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="14" />
+                    <RowDefinition Height="49" />
+                </Grid.RowDefinitions>
+
+                <Border Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" BorderBrush="#FF7B6AF1" BorderThickness="2" Margin="0,7,0,0" CornerRadius="3">
+                    <PasswordBox x:Name="CAP" VerticalAlignment="Center" BorderBrush="{x:Null}" PasswordChanged="PasswordBox_OnPasswordChanged"
+                                 FontSize="18" />
+                </Border>
+                <TextBlock FontSize="13" HorizontalAlignment="Left" Margin="10,-3,0,0" Padding="5,0,5,0" 
+                           Foreground="#FF7B6AF1" Background="White">Postal code</TextBlock>
+            </Grid>
+        </Border>
+
+        <Border Grid.ColumnSpan="3" Grid.Row="5" Grid.Column="1" BorderBrush="Transparent" BorderThickness="1" CornerRadius="250" >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="14" />
+                    <RowDefinition Height="49" />
+                </Grid.RowDefinitions>
+
+                <Border Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" BorderBrush="#FF7B6AF1" BorderThickness="2" Margin="0,7,0,0" CornerRadius="3">
+                    <PasswordBox x:Name="City" VerticalAlignment="Center" BorderBrush="{x:Null}" PasswordChanged="PasswordBox_OnPasswordChanged"
+                                 FontSize="18" />
+                </Border>
+                <TextBlock FontSize="13" HorizontalAlignment="Left" Margin="10,-3,0,0" Padding="5,0,5,0" 
+                           Foreground="#FF7B6AF1" Background="White">City</TextBlock>
+            </Grid>
+        </Border>
+
+
+
+
+        <Button Grid.Column="1" Grid.Row="6" Click="Edit_Click"  
+                Style="{StaticResource MyButtonStyle}"
+                Foreground="White" 
+                FontSize="16" FontWeight="DemiBold" Background="#FF5D47E0" 
+                x:Name="Edit" Content="Edit">
+        </Button>
+        <Button Grid.Column="2" Grid.Row="6" Click="Add_Click"
+                Style="{StaticResource MyButtonStyle}"
+                Foreground="White" 
+                FontSize="16" FontWeight="DemiBold" Background="#FF5D47E0" 
+                x:Name="Add" Content="Add">
+        </Button>
+        <Button Grid.Column="1" Grid.Row="7" Click="Delete_Click"
+                Style="{StaticResource MyButtonStyle}"
+                Foreground="White" 
+                FontSize="16" FontWeight="DemiBold" Background="#FF5D47E0" 
+                x:Name="Delete" Content="Delete">
+        </Button>
+        <Button Grid.Column="2" Grid.Row="7" Click="Save_Click"
+                Style="{StaticResource MyButtonStyle}"
+                Foreground="White" 
+                FontSize="16" FontWeight="DemiBold" Background="#FF5D47E0"
+                x:Name="Save" Content="Save">
         </Button>
 
-        <Button Grid.Column="1" Grid.Row="5" Click="ButtonBase_OnClick"  
+
+
+
+
+
+
+
+        <Button Grid.Column="1" Grid.Row="9" Click="Button_Click"  Style="{StaticResource MyButtonStyle}"
+                Content="{Binding ButtonText}" Foreground="White" 
+                FontSize="16" FontWeight="DemiBold" Background="#FF5D47E0"  >
+        </Button>
+
+        <Button Grid.Column="2" Grid.Row="9" Click="ButtonBase_OnClick"  
                 Style="{StaticResource MyButtonStyle}"
                 Content="{Binding ButtonLogoutText}" Foreground="White" 
-                FontSize="16" FontWeight="DemiBold" Background="#FF5D47E0" >
+                FontSize="16" FontWeight="DemiBold" Background="#FF5D47E0" Margin="10,0,0,0" >
         </Button>
 
 
 
-<!--BLAZOR SIDE-->
-        <Border Grid.Row="1" Grid.Column="3" BorderBrush="Transparent" BorderThickness="1" CornerRadius="250" >
-            <local:WpfTextfieldWrap Label="Username"/>
+        <!--BLAZOR SIDE-->
+        <Border Grid.Row="6" Grid.Column="6" 
+                BorderBrush="Transparent" 
+                BorderThickness="1" CornerRadius="250" >
+            <local:WpfButtonWrap x:Name="EditBlazorButton" Id="edit-button" Text="Edit"/>
         </Border>
 
-        <Border Grid.Row="2" Grid.Column="3" BorderBrush="Transparent" BorderThickness="1" CornerRadius="250" >
-            <local:WpfTextfieldWrap Label="Password" InputType="Password"/>
+        <Border Grid.Row="6" Grid.Column="8" 
+                BorderBrush="Transparent" 
+                BorderThickness="1" CornerRadius="250" >
+            <local:WpfButtonWrap x:Name="AddBlazorButton" Id="add-button" ButtonImage="Add"/>
         </Border>
 
-        <Border Grid.Row="3" Grid.Column="3" BorderBrush="Transparent" BorderThickness="1" CornerRadius="250" >
-            <local:MudBlazorButtonWrap Text="Login"/>
+        <Border Grid.Row="7" Grid.Column="6" 
+                BorderBrush="Transparent" 
+                BorderThickness="1" CornerRadius="250"  >
+            <local:WpfButtonWrap x:Name="DeleteBlazorButton" Id="delete-button" ButtonImage="Delete"/>
         </Border>
 
-        <Border Grid.Row="5" Grid.Column="3" BorderBrush="Transparent" BorderThickness="1" CornerRadius="250" >
-            <local:MudBlazorButtonWrap Text="Logout"/>
+        <Border Grid.Row="7" Grid.Column="8" 
+                BorderBrush="Transparent" 
+                BorderThickness="1" CornerRadius="250" >
+            <local:WpfButtonWrap x:Name="SaveBlazorButton" Id="save-button" ButtonImage="Save"/>
         </Border>
 
+
+
+
+
+        <Border Grid.Row="2" Grid.Column="6" BorderBrush="Transparent" BorderThickness="1" CornerRadius="250" >
+            <local:WpfTextfieldWrap Label="Name"/>
+        </Border>
+
+        <Border Grid.Row="2" Grid.Column="8" BorderBrush="Transparent" BorderThickness="1" CornerRadius="250" Grid.ColumnSpan="2" >
+            <local:WpfTextfieldWrap Label="Surname" />
+        </Border>
+
+        <Border Grid.Row="3" Grid.Column="6" Grid.ColumnSpan="4" BorderBrush="Transparent" BorderThickness="1" CornerRadius="250" >
+            <local:WpfTextfieldWrap Label="Address" />
+        </Border>
+
+
+
+
+        <Border Grid.Row="4" Grid.Column="6" BorderBrush="Transparent" BorderThickness="1" CornerRadius="250" >
+            <local:WpfTextfieldWrap Label="Number"/>
+        </Border>
+
+        <Border Grid.Row="4" Grid.Column="8" Grid.ColumnSpan="2" BorderBrush="Transparent" BorderThickness="1" CornerRadius="250" >
+            <local:WpfTextfieldWrap Label="Postal code" />
+        </Border>
+
+        <Border Grid.Row="5" Grid.Column="6" Grid.ColumnSpan="4" BorderBrush="Transparent" BorderThickness="1" CornerRadius="250" >
+            <local:WpfTextfieldWrap Label="City" />
+        </Border>
+
+
+
+
+
+        <Border Grid.Row="9" Grid.Column="6" BorderBrush="Transparent" BorderThickness="1" CornerRadius="250" >
+            <local:WpfButtonWrap x:Name="LoginButton" Text="Conferma" Id="confirm-button"/>
+        </Border>
+
+        <Border Grid.Row="9" Grid.Column="8" BorderBrush="Transparent" BorderThickness="1" CornerRadius="250" >
+            <local:WpfButtonWrap x:Name="LogoutButton" Text="Annulla" Id="cancel-button"/>
+        </Border>
     </Grid>
 </Window>
