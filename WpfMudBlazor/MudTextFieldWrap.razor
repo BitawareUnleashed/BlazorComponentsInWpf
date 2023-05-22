@@ -1,13 +1,11 @@
 ﻿@using MudBlazor
-@using WpfMudBlazor.Models
-@using WpfMudBlazor.Services
 @using Microsoft.Extensions.DependencyInjection
 @namespace WpfMudBlazor
 @inject IJSRuntime JSRuntime
 
 <MudThemeProvider />
 
-<MudTextField T="string" InputType="@InputType" AdornmentText="" Adornment="Adornment.Start" Label="@LabelText" Variant="Variant.Outlined" @bind-Text="TextValue"></MudTextField>
+<MudTextField T="string" InputType="@InputType" Label="@LabelText" Variant="Variant.Outlined" @bind-Text="TextValue"></MudTextField>
 
 
 

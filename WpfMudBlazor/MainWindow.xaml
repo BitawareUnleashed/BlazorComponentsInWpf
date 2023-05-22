@@ -4,7 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:blazor="clr-namespace:Microsoft.AspNetCore.Components.WebView.Wpf;assembly=Microsoft.AspNetCore.Components.WebView.Wpf"
-        xmlns:local="clr-namespace:WpfMudBlazor" d:DataContext="{d:DesignInstance Type=local:WpfTextfieldWrap}"
+        xmlns:local="clr-namespace:WpfMudBlazor" 
+        d:DataContext="{d:DesignInstance Type=local:WpfTextfieldWrap}"
         mc:Ignorable="d"
         Title="MainWindow" Height="550" Width="900">
     <Window.Resources>
@@ -41,8 +42,6 @@
             <RowDefinition Height="68" />
             <RowDefinition Height="68" />
             <RowDefinition Height="68" />
-            <RowDefinition Height="50" />
-            <RowDefinition Height="50"/>
             <RowDefinition Height="15"/>
             <RowDefinition Height="50"/>
             <RowDefinition Height="96"/>
@@ -51,9 +50,10 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="7" />
             <ColumnDefinition Width="150" />
-            <ColumnDefinition Width="150"/>
-            <ColumnDefinition Width="80"/>
             <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="150"/>
             <ColumnDefinition Width="50"/>
             <ColumnDefinition Width="150"/>
             <ColumnDefinition Width="20"/>
@@ -62,245 +62,56 @@
             <ColumnDefinition Width="62*"/>
         </Grid.ColumnDefinitions>
 
-        <!--WPF SIDE-->
-        <TextBlock Grid.Row="0" Grid.Column="4" Grid.ColumnSpan="2"  Text="{Binding Text}" Grid.RowSpan="2"></TextBlock>
-
-
-
-
-        <Border Grid.Row="2" Grid.Column="1" BorderBrush="Transparent" BorderThickness="1" CornerRadius="250" >
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="14" />
-                    <RowDefinition Height="49" />
-                </Grid.RowDefinitions>
-
-                <Border Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" BorderBrush="#FF7B6AF1" BorderThickness="2" Margin="0,7,0,0" CornerRadius="3">
-                    <TextBox TextWrapping="Wrap" DataContext="this"
-                        IsReadOnly="{Binding isEdit}"
-                        Text="{Binding Name}" 
-                        VerticalAlignment="Center" 
-                        BorderBrush="{x:Null}" 
-                        FontSize="18"/>
-                </Border>
-                <TextBlock FontSize="13" HorizontalAlignment="Left" Margin="10,-3,0,0" Padding="5,0,5,0" 
-                            Foreground="#FF7B6AF1" Background="White">Name</TextBlock>
-            </Grid>
-        </Border>
-
-        <Border Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" BorderBrush="Transparent" BorderThickness="1" CornerRadius="250"  Margin="10,0,0,0" >
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="14" />
-                    <RowDefinition Height="49" />
-                </Grid.RowDefinitions>
-
-                <Border Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" BorderBrush="#FF7B6AF1" BorderThickness="2" Margin="0,7,0,0" CornerRadius="3">
-                    <TextBox x:Name="SurnameTextbox" 
-                             VerticalAlignment="Center" 
-                             BorderBrush="{x:Null}" 
-                             Text="{Binding Surname}"
-                             FontSize="18" />
-                </Border>
-                <TextBlock FontSize="13" HorizontalAlignment="Left" Margin="10,-3,0,0" Padding="5,0,5,0" 
-                           Foreground="#FF7B6AF1" Background="White">Surname</TextBlock>
-            </Grid>
-        </Border>
-
-        <Border Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" BorderBrush="Transparent" BorderThickness="1" CornerRadius="250" >
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="14" />
-                    <RowDefinition Height="49" />
-                </Grid.RowDefinitions>
-
-                <Border Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" BorderBrush="#FF7B6AF1" BorderThickness="2" Margin="0,7,0,0" CornerRadius="3">
-                    <TextBox TextWrapping="Wrap" DataContext="this"
-                        IsReadOnly="{Binding isEdit}"
-                        Text="{Binding Name}" 
-                        VerticalAlignment="Center" 
-                        BorderBrush="{x:Null}" 
-                        FontSize="18"/>
-                </Border>
-                <TextBlock FontSize="13" HorizontalAlignment="Left" Margin="10,-3,0,0" Padding="5,0,5,0" 
-                           Foreground="#FF7B6AF1" Background="White">Address</TextBlock>
-            </Grid>
-        </Border>
-
-        <Border Grid.Row="4" Grid.Column="1" BorderBrush="Transparent" BorderThickness="1" CornerRadius="250" >
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="14" />
-                    <RowDefinition Height="49" />
-                </Grid.RowDefinitions>
-
-                <Border Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" BorderBrush="#FF7B6AF1" BorderThickness="2" Margin="0,7,0,0" CornerRadius="3">
-                    <TextBox TextWrapping="Wrap" DataContext="this"
-                        IsReadOnly="{Binding isEdit}"
-                        Text="{Binding Name}" 
-                        VerticalAlignment="Center" 
-                        BorderBrush="{x:Null}" 
-                        FontSize="18"/>
-                </Border>
-                <TextBlock FontSize="13" HorizontalAlignment="Left" Margin="10,-3,0,0" Padding="5,0,5,0" 
-                           Foreground="#FF7B6AF1" Background="White">Number</TextBlock>
-            </Grid>
-        </Border>
-
-        <Border Grid.Row="4" Grid.Column="2" BorderBrush="Transparent" BorderThickness="1" CornerRadius="250" Margin="10,0,0,0" >
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="14" />
-                    <RowDefinition Height="49" />
-                </Grid.RowDefinitions>
-
-                <Border Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" BorderBrush="#FF7B6AF1" BorderThickness="2" Margin="0,7,0,0" CornerRadius="3">
-                    <TextBox TextWrapping="Wrap" DataContext="this"
-                        IsReadOnly="{Binding isEdit}"
-                        Text="{Binding Name}" 
-                        VerticalAlignment="Center" 
-                        BorderBrush="{x:Null}" 
-                        FontSize="18"/>
-                </Border>
-                <TextBlock FontSize="13" HorizontalAlignment="Left" Margin="10,-3,0,0" Padding="5,0,5,0" 
-                           Foreground="#FF7B6AF1" Background="White">Postal code</TextBlock>
-            </Grid>
-        </Border>
-
-        <Border Grid.ColumnSpan="3" Grid.Row="5" Grid.Column="1" BorderBrush="Transparent" BorderThickness="1" CornerRadius="250" >
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="14" />
-                    <RowDefinition Height="49" />
-                </Grid.RowDefinitions>
-
-                <Border Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" BorderBrush="#FF7B6AF1" BorderThickness="2" Margin="0,7,0,0" CornerRadius="3">
-                    <TextBox TextWrapping="Wrap" DataContext="this"
-                        IsReadOnly="{Binding isEdit}"
-                        Text="{Binding Name}" 
-                        VerticalAlignment="Center" 
-                        BorderBrush="{x:Null}" 
-                        FontSize="18"/>
-                </Border>
-                <TextBlock FontSize="13" HorizontalAlignment="Left" Margin="10,-3,0,0" Padding="5,0,5,0" 
-                           Foreground="#FF7B6AF1" Background="White">City</TextBlock>
-            </Grid>
-        </Border>
-
-
-
-        <!--BUTTONS CONTOLS-->
-        <Button Grid.Column="1" Grid.Row="6" Click="Edit_Click"  
-                Style="{StaticResource MyButtonStyle}"
-                Foreground="White" 
-                FontSize="16" FontWeight="DemiBold" Background="#FF5D47E0" 
-                x:Name="Edit" Content="EDIT">
-        </Button>
-        <Button Grid.Column="2" Grid.Row="6" Click="Add_Click"
-                Style="{StaticResource MyButtonStyle}"
-                Foreground="White" 
-                FontSize="16" FontWeight="DemiBold" Background="#FF5D47E0" 
-                x:Name="Add" Content="ADD">
-        </Button>
-        <Button Grid.Column="1" Grid.Row="7" Click="Delete_Click"
-                Style="{StaticResource MyButtonStyle}"
-                Foreground="White" 
-                FontSize="16" FontWeight="DemiBold" Background="#FF5D47E0" 
-                x:Name="Delete" Content="DELETE">
-        </Button>
-        <Button Grid.Column="2" Grid.Row="7" Click="Save_Click"
-                Style="{StaticResource MyButtonStyle}"
-                Foreground="White" 
-                FontSize="16" FontWeight="DemiBold" Background="#FF5D47E0"
-                x:Name="Save" Content="SAVE">
-        </Button>
-
-
-
-
-
-
-
-
-        <Button Grid.Column="1" Grid.Row="9" Click="Button_Click"  Style="{StaticResource MyButtonStyle}"
-                Content="{Binding ButtonText}" Foreground="White" 
-                FontSize="16" FontWeight="DemiBold" Background="#FF5D47E0"  >
-        </Button>
-
-        <Button Grid.Column="2" Grid.Row="9" Click="ButtonBase_OnClick"  
-                Style="{StaticResource MyButtonStyle}"
-                Content="{Binding ButtonLogoutText}" Foreground="White" 
-                FontSize="16" FontWeight="DemiBold" Background="#FF5D47E0" Margin="10,0,0,0" >
-        </Button>
 
 
 
         <!--BLAZOR SIDE-->
-        <Border Grid.Row="6" Grid.Column="6" 
-                BorderBrush="Transparent" 
-                BorderThickness="1" CornerRadius="250" >
-            <local:WpfButtonWrap x:Name="EditBlazorButton" Id="edit-button" Text="Edit"/>
-        </Border>
-
-        <Border Grid.Row="6" Grid.Column="8" 
-                BorderBrush="Transparent" 
-                BorderThickness="1" CornerRadius="250" >
-            <local:WpfButtonWrap x:Name="AddBlazorButton" Id="add-button" ButtonImage="Add"/>
-        </Border>
-
-        <Border Grid.Row="7" Grid.Column="6" 
-                BorderBrush="Transparent" 
-                BorderThickness="1" CornerRadius="250"  >
-            <local:WpfButtonWrap x:Name="DeleteBlazorButton" Id="delete-button" ButtonImage="Delete"/>
-        </Border>
-
-        <Border Grid.Row="7" Grid.Column="8" 
-                BorderBrush="Transparent" 
-                BorderThickness="1" CornerRadius="250" >
-            <local:WpfButtonWrap x:Name="SaveBlazorButton" Id="save-button" ButtonImage="Save"/>
+        <Border Grid.Row="5" Grid.Column="1" BorderBrush="Transparent" BorderThickness="1" CornerRadius="250" >
+            <local:WpfTextfieldWrap Label="Send"/>
         </Border>
 
 
-
-
-
-        <Border Grid.Row="2" Grid.Column="6" BorderBrush="Transparent" BorderThickness="1" CornerRadius="250" >
-            <local:WpfTextfieldWrap Label="Name"/>
+        <Border Grid.Row="3" Grid.Column="3" BorderBrush="Transparent" BorderThickness="1" CornerRadius="0"  Height="50" VerticalAlignment="Top">
+            <local:WpfButtonWrap x:Name="ConnectButton" Text="Connect" Id="connect-button"/>
         </Border>
 
-        <Border Grid.Row="2" Grid.Column="8" BorderBrush="Transparent" BorderThickness="1" CornerRadius="250" Grid.ColumnSpan="2" >
-            <local:WpfTextfieldWrap Label="Surname" />
+        <Border Grid.Row="5" Grid.Column="3" BorderBrush="Transparent" BorderThickness="1" CornerRadius="0" Height="50" VerticalAlignment="Top">
+            <local:WpfButtonWrap x:Name="SendButton" Text="Send" Id="send-button"/>
         </Border>
 
-        <Border Grid.Row="3" Grid.Column="6" Grid.ColumnSpan="4" BorderBrush="Transparent" BorderThickness="1" CornerRadius="250" >
-            <local:WpfTextfieldWrap Label="Address" />
-        </Border>
+        <ComboBox x:Name="serialNameComboBox" FontSize="18" SelectionChanged="comboBox_SelectionChanged" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Top" Width="150" Height="48">
+            <ComboBox.ItemContainerStyle>
+                <Style TargetType="ComboBoxItem">
+                    <Setter Property="FontSize" Value="18" />
+                </Style>
+            </ComboBox.ItemContainerStyle>
+            <ComboBoxItem>COM1</ComboBoxItem>
+            <ComboBoxItem>COM2</ComboBoxItem>
+            <ComboBoxItem>COM3</ComboBoxItem>
+            <ComboBoxItem>COM4</ComboBoxItem>
+            <ComboBoxItem>COM5</ComboBoxItem>
+            <ComboBoxItem>COM6</ComboBoxItem>
+            <ComboBoxItem>COM7</ComboBoxItem>
+            <ComboBoxItem>COM8</ComboBoxItem>
+        </ComboBox>
 
 
-
-
-        <Border Grid.Row="4" Grid.Column="6" BorderBrush="Transparent" BorderThickness="1" CornerRadius="250" >
-            <local:WpfTextfieldWrap Label="Number"/>
-        </Border>
-
-        <Border Grid.Row="4" Grid.Column="8" Grid.ColumnSpan="2" BorderBrush="Transparent" BorderThickness="1" CornerRadius="250" >
-            <local:WpfTextfieldWrap Label="Postal code" />
-        </Border>
-
-        <Border Grid.Row="5" Grid.Column="6" Grid.ColumnSpan="4" BorderBrush="Transparent" BorderThickness="1" CornerRadius="250" >
-            <local:WpfTextfieldWrap Label="City" />
-        </Border>
-
-
-
-
-
-        <Border Grid.Row="9" Grid.Column="6" BorderBrush="Transparent" BorderThickness="1" CornerRadius="250" >
-            <local:WpfButtonWrap x:Name="LoginButton" Text="Conferma" Id="confirm-button"/>
-        </Border>
-
-        <Border Grid.Row="9" Grid.Column="8" BorderBrush="Transparent" BorderThickness="1" CornerRadius="250" >
-            <local:WpfButtonWrap x:Name="LogoutButton" Text="Annulla" Id="cancel-button"/>
-        </Border>
+        <ComboBox x:Name="serialBoudComboBox" FontSize="18" SelectionChanged="comboBox_BaudRateSelectionChanged" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="4" VerticalAlignment="Top" Width="150" Height="48">
+            <ComboBox.ItemContainerStyle>
+                <Style TargetType="ComboBoxItem">
+                    <Setter Property="FontSize" Value="18" />
+                </Style>
+            </ComboBox.ItemContainerStyle>
+            <ComboBoxItem>2400</ComboBoxItem>
+            <ComboBoxItem>4800</ComboBoxItem>
+            <ComboBoxItem>9600</ComboBoxItem>
+            <ComboBoxItem>19200</ComboBoxItem>
+            <ComboBoxItem>38400</ComboBoxItem>
+            <ComboBoxItem>57600</ComboBoxItem>
+            <ComboBoxItem>115200</ComboBoxItem>
+            <ComboBoxItem>230400</ComboBoxItem>
+            <ComboBoxItem>460800</ComboBoxItem>
+            <ComboBoxItem>921600</ComboBoxItem>
+        </ComboBox>
     </Grid>
 </Window>
