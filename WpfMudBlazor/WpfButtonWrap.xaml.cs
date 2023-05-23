@@ -15,7 +15,6 @@ namespace WpfMudBlazor
     {
         private string text = string.Empty;
         private string id = string.Empty;
-        private string buttonImage = string.Empty;
 
         private string htmlStyle = string.Empty;
         public string HtmlStyle

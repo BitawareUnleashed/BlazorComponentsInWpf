@@ -12,6 +12,9 @@ public class SerialCommunication : ISerialCommunication, IDisposable
     public event EventHandler<string> SerialDisconnected;
     public event EventHandler<string> SerialChanged;
 
+    public bool IsConnected { get; set; }
+
+
     public SerialCommunication()
     {
     }
@@ -84,6 +87,7 @@ public class SerialCommunication : ISerialCommunication, IDisposable
             serial.DataReceived += Serial_DataReceived;
 
             SerialConnected?.Invoke(this, $"Port open on {portName} and baud rate {baudRate}.");
+            IsConnected = true;
         }
         catch (Exception ex)
         {
@@ -93,6 +97,8 @@ public class SerialCommunication : ISerialCommunication, IDisposable
 
     public void Disconnect()
     {
+        IsConnected = false;
+        serial.DataReceived -= Serial_DataReceived;
         serial.Close();
         SerialDisconnected?.Invoke(this, $"Disconnected");
     }

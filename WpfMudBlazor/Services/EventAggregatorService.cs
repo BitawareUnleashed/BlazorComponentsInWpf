@@ -16,18 +16,27 @@ public class EventAggregatorService : IEventAggregatorService,
     public event EventHandler<string> OnButtonPressed;
     public event EventHandler<string> OnTextChanged;
 
+    /// <summary>
+    /// Called when [event raised].
+    /// </summary>
+    /// <param name="e">The e.</param>
     void ISubscriber<ButtonClicked>.OnEventRaised(ButtonClicked e)
     {
         OnButtonPressed?.Invoke(this, e.Id);
     }
 
+    /// <summary>
+    /// Called when [event raised].
+    /// </summary>
+    /// <param name="e">The e.</param>
     void ISubscriber<TextChanged>.OnEventRaised(TextChanged e)
     {
         OnTextChanged?.Invoke(this, e.Text);
     }
-
-
-
+    /// <summary>
+    /// Initializes a new instance of the <see cref="EventAggregatorService"/> class.
+    /// </summary>
+    /// <param name="ea">The ea.</param>
     public EventAggregatorService(IEventAggregator ea)
     {
         eventAggregator = ea;

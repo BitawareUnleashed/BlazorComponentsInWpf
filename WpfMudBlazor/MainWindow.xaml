@@ -5,8 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:blazor="clr-namespace:Microsoft.AspNetCore.Components.WebView.Wpf;assembly=Microsoft.AspNetCore.Components.WebView.Wpf"
         xmlns:local="clr-namespace:WpfMudBlazor"
+        xmlns:conv="clr-namespace:WpfMudBlazor.Models"
         mc:Ignorable="d"
         Title="Serial Communication Blazor Hybrid" Height="850" Width="700">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50" />
@@ -135,9 +139,16 @@
 
         <!--BLAZOR SIDE-->
 
-        <Border Grid.Row="1" Grid.Column="5" BorderBrush="Transparent" BorderThickness="1" CornerRadius="250" Height="50" >
+        <Border Grid.Row="1" Grid.Column="5" BorderBrush="Transparent" BorderThickness="1" CornerRadius="250" Height="50" 
+                Visibility="{Binding IsConnected, Converter={StaticResource BooleanToVisibilityConverter}}">
             <local:WpfButtonWrap Text="Connect" Id="connect-button" HtmlStyle="width:148px; height:48px" Height="48" Width="148"/>
         </Border>
+        <Border Grid.Row="1" Grid.Column="5" BorderBrush="Transparent" BorderThickness="1" CornerRadius="250" Height="50" 
+                Visibility="{Binding IsNotConnected, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <local:WpfButtonWrap Text="Disconnect" Id="disconnect-button" HtmlStyle="width:148px; height:48px" Height="48" Width="148"/>
+        </Border>
+        
+        
 
         <Border Grid.Row="3" Grid.Column="5" BorderBrush="Transparent" BorderThickness="1" CornerRadius="250" Height="50" >
             <local:WpfButtonWrap Text="Send" Id="send-button" HtmlStyle="width:148px; height:48px" Height="48" Width="148"/>

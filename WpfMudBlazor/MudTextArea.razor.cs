@@ -18,6 +18,9 @@ public partial class MudTextArea
     {
         SerialCommunication = App.AppHost.Services.GetRequiredService<ISerialCommunication>();
         SerialCommunication.SerialChanged += SerialCommunication_SerialChanged;
+        SerialCommunication.SerialConnected += SerialCommunication_SerialChanged;
+        SerialCommunication.SerialDisconnected += SerialCommunication_SerialChanged;
+
         base.OnInitialized();
     }
 
