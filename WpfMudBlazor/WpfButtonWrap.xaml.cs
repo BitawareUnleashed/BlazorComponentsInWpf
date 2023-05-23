@@ -1,28 +1,35 @@
-﻿using System;
-using System.CodeDom;
+﻿using Microsoft.Extensions.DependencyInjection;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace WpfMudBlazor
 {
     /// <summary>
     /// Interaction logic for UserControl1.xaml
     /// </summary>
-    public partial class MudBlazorButtonWrap : UserControl, INotifyPropertyChanged
+    public partial class WpfButtonWrap : UserControl, INotifyPropertyChanged
     {
         private string text = string.Empty;
+        private string id = string.Empty;
+        private string buttonImage = string.Empty;
+
+        public string Id
+        {
+            get => id;
+            set
+            {
+                id = value;
+                buttonParameters.Parameters = new Dictionary<string, object>()
+                {
+                    { "ButtonId", Id },
+                    { "ButtonText", Text }
+                }!;
+                
+                OnPropertyChanged(nameof(Id));
+            }
+        }
 
         public static readonly DependencyProperty MyTypeProperty = DependencyProperty.Register(
                 "MyType", typeof(Type),
@@ -45,17 +52,17 @@ namespace WpfMudBlazor
             }
         }
 
-        public MudBlazorButtonWrap()
+
+
+        public WpfButtonWrap()
         {
             InitializeComponent();
             this.DataContext = this;
-
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
         private void OnPropertyChanged(string propertyName) =>
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-
     }
 }

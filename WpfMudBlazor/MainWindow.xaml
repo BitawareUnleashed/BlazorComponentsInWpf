@@ -4,7 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:blazor="clr-namespace:Microsoft.AspNetCore.Components.WebView.Wpf;assembly=Microsoft.AspNetCore.Components.WebView.Wpf"
-        xmlns:local="clr-namespace:WpfMudBlazor"
+        xmlns:local="clr-namespace:WpfMudBlazor" 
+        d:DataContext="{d:DesignInstance Type=local:WpfTextfieldWrap}"
         mc:Ignorable="d"
         Title="MainWindow" Height="850" Width="550">
     <Window.Resources>
@@ -35,7 +36,8 @@
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="5"/>
             <RowDefinition Height="68" />
             <RowDefinition Height="68" />
             <RowDefinition Height="68" />
@@ -45,7 +47,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="5" />
+            <ColumnDefinition Width="7" />
             <ColumnDefinition Width="150" />
             <ColumnDefinition Width="20" />
             <ColumnDefinition Width="150" />

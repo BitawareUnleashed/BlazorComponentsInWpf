@@ -1,32 +1,23 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
-using WpfMudBlazor.Models;
-using WpfMudBlazor.Services;
+using MudBlazor;
 
 namespace WpfMudBlazor;
 
 public partial class MudButtonWrap
 {
-    private IEventAggregator? eventAggregator;
-    private EventAggregatorService? eventAggregatorService;
+    private string mudImage = string.Empty;
+    private string style = "width:148px; height:48px";
 
     [Parameter] public string ButtonText { get; set; } = "-";
 
+    [Parameter] public string ButtonId { get; set; } = "-";
 
+    
     protected override void OnInitialized()
     {
         base.OnInitialized();
-    }
-
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-        {
-            eventAggregator = App.AppHost.Services.GetRequiredService<IEventAggregator>();
-            eventAggregatorService = App.AppHost.Services.GetRequiredService<EventAggregatorService>();
-            eventAggregatorService.OnButtonPressed += EventAggregatorService_OnButtonPressed;
-        }
     }
 
     private void EventAggregatorService_OnButtonPressed(object? sender, string e)
@@ -34,17 +25,8 @@ public partial class MudButtonWrap
         StateHasChanged();
     }
 
-    private void ButtonClicked()
+    public void ButtonClicked()
     {
-        switch (ButtonText)
-        {
-            case "Login":
-                eventAggregator?.Publish(new ButtonLogin($"User logged in from Blazor"));
-                break;
-            case "Logout":
-                eventAggregator?.Publish(new ButtonLogin($"User logged out from Blazor"));
-                break;
-        }
-        
+
     }
 }

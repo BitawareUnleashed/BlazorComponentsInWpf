@@ -1,6 +1,4 @@
 ﻿@using MudBlazor
-@using WpfMudBlazor.Models
-@using WpfMudBlazor.Services
 @using Microsoft.Extensions.DependencyInjection
 @namespace WpfMudBlazor
 @inject IJSRuntime JSRuntime
@@ -8,58 +6,6 @@
 <MudThemeProvider />
 
 <MudTextField T="string" InputType="@InputType" Label="@LabelText" Variant="Variant.Outlined" @bind-Text="TextValue"></MudTextField>
-@code
-{
-    private IEventAggregator? eventAggregator;
-    private EventAggregatorService? eventAggregatorService;
-
-    [Parameter] public string LabelText { get; set; } = "";
-
-    [Parameter] public InputType InputType { get; set; } = InputType.Text;
-
-    private string textValue = string.Empty;
-
-    public string TextValue
-    {
-        get => textValue;
-        set
-        {
-            textValue = value;
-            PublishMessage(textValue);
-        }
-    }
 
 
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-        {
-            //await JSRuntime.InvokeVoidAsync("RegisterWPFApp", DotNetObjectReference.Create(this));
 
-            eventAggregator = App.AppHost.Services.GetRequiredService<IEventAggregator>();
-            eventAggregatorService = App.AppHost.Services.GetRequiredService<EventAggregatorService>();
-            eventAggregatorService.OnButtonPressed += EventAggregatorService_OnButtonPressed;
-        }
-    }
-    private void EventAggregatorService_OnButtonPressed(object? sender, string e)
-    {
-        StateHasChanged();
-    }
-
-    private void PublishMessage(string text)
-    {
-        switch (InputType)
-        {
-            case InputType.Text:
-                eventAggregator?.Publish(new TextChanged(TextValue));
-                break;
-            case InputType.Password:
-                eventAggregator?.Publish(new PasswordChanged(TextValue));
-                break;
-            default:
-                break;
-        }
-    }
-
-
-}

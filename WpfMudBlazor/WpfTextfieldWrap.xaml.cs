@@ -1,17 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using MudBlazor;
 
 namespace WpfMudBlazor
@@ -22,7 +12,6 @@ namespace WpfMudBlazor
     public partial class WpfTextfieldWrap : UserControl, INotifyPropertyChanged
     {
         private string label;
-        
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -36,7 +25,7 @@ namespace WpfMudBlazor
                 {
                     textFieldParameters.Parameters = new Dictionary<string, object?>();
                 }
-                textFieldParameters.Parameters.Add("LabelText", Label); 
+                textFieldParameters.Parameters.Add("LabelText", Label);
 
                 OnPropertyChanged(nameof(Label));
             }
@@ -56,6 +45,24 @@ namespace WpfMudBlazor
                 textFieldParameters.Parameters.Add("InputType", InputType);
 
                 OnPropertyChanged(nameof(InputType));
+            }
+        }
+
+        private string text = string.Empty;
+        public string Text
+        {
+            get { return text; }
+            set
+            {
+                text = value;
+                if (textFieldParameters.Parameters is null)
+                {
+                    textFieldParameters.Parameters = new Dictionary<string, object?>();
+                }
+                textFieldParameters.Parameters.Add("Text", Text);
+
+                OnPropertyChanged(nameof(Text));
+
             }
         }
 

@@ -9,8 +9,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MudBlazor.Services;
-using WpfMudBlazor.Models;
-using WpfMudBlazor.Services;
 
 namespace WpfMudBlazor
 {
@@ -31,11 +29,6 @@ namespace WpfMudBlazor
 
                     services.AddWpfBlazorWebView();
                     services.AddMudServices();
-
-                    services.AddSingleton<IEventAggregator, EventAggregator>();
-                    services.AddSingleton<EventAggregatorService>();
-
-
 
                     Resources.Add("services", services.BuildServiceProvider());
 
