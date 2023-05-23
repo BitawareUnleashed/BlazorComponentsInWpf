@@ -24,6 +24,13 @@ namespace WpfMudBlazor
     {
         private string text = string.Empty;
 
+        public static readonly DependencyProperty MyTypeProperty = DependencyProperty.Register(
+                "MyType", typeof(Type),
+                typeof(MainWindow)
+                );
+
+        public Type MyType { get; set; }
+
         public string Text
         {
             get => text;

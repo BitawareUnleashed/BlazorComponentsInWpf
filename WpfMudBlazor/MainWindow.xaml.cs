@@ -1,9 +1,6 @@
 ﻿using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using System.Windows;
 using Microsoft.Extensions.DependencyInjection;
-using MudBlazor;
-using MudBlazor.Services;
 using WpfMudBlazor.Models;
 using WpfMudBlazor.Services;
 
@@ -87,14 +84,6 @@ namespace WpfMudBlazor
             this.DataContext = this;
 
             eventAggregator = App.AppHost.Services.GetRequiredService<IEventAggregator>();
-
-            //var serviceCollection = new ServiceCollection();
-            //serviceCollection.AddWpfBlazorWebView();
-            //serviceCollection.AddMudServices();
-            //serviceCollection.AddSingleton<IEventAggregator, EventAggregator>();
-            //Resources.Add("services", serviceCollection.BuildServiceProvider());
-
-            eventAggregator = App.AppHost.Services.GetRequiredService<IEventAggregator>();
             eventAggregatorService = App.AppHost.Services.GetRequiredService<EventAggregatorService>();
             eventAggregatorService.OnButtonPressed += EventAggregatorService_OnButtonPressed; ;
             eventAggregatorService.OnTextChanged += EventAggregatorService_OnTextChanged;
@@ -125,9 +114,7 @@ namespace WpfMudBlazor
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-            Username = string.Empty;
-            Password=string.Empty;
-
+            
             eventAggregator?.Publish(new ButtonLogout("User logged out from WPF"));
         }
 
@@ -139,7 +126,7 @@ namespace WpfMudBlazor
 
         private void PasswordBox_OnPasswordChanged(object sender, RoutedEventArgs e)
         {
-            Password = PasswordBox.Password;
+            
         }
     }
 }

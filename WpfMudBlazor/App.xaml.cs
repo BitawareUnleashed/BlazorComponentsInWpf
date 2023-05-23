@@ -39,16 +39,10 @@ namespace WpfMudBlazor
 
                     Resources.Add("services", services.BuildServiceProvider());
 
-
-
-                    //services.AddSingleton<SuperheroContext>();
-                    //services.AddSingleton<IUnitOfWork, UnitOfWork>();
-                    //services.AddSingleton<IMethodsBusinessLogic, MethodsBusinessLogic>();
-
-                    //IConfiguration configuration;
-                    //configuration = new ConfigurationBuilder()
-                    //    .AddJsonFile(@"appsettings.json")
-                    //    .Build();
+                    IConfiguration configuration;
+                    configuration = new ConfigurationBuilder()
+                        .AddJsonFile(@"appsettings.json")
+                        .Build();
 
                     //services.AddDbContext<SuperheroContext>(options =>
                     //    options.UseSqlServer(configuration.GetConnectionString("Default")));

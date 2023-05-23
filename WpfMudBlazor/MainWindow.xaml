@@ -6,7 +6,7 @@
         xmlns:blazor="clr-namespace:Microsoft.AspNetCore.Components.WebView.Wpf;assembly=Microsoft.AspNetCore.Components.WebView.Wpf"
         xmlns:local="clr-namespace:WpfMudBlazor"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="400">
+        Title="MainWindow" Height="850" Width="550">
     <Window.Resources>
         <!-- This style is used for buttons, to remove the WPF default 'animated' mouse over effect -->
         <Style x:Key="MyButtonStyle" TargetType="Button">
@@ -38,84 +38,40 @@
             <RowDefinition Height="50" />
             <RowDefinition Height="68" />
             <RowDefinition Height="68" />
-            <RowDefinition Height="50" />
+            <RowDefinition Height="68" />
             <RowDefinition Height="9"/>
             <RowDefinition Height="50"/>
             <RowDefinition Height="96"/>
-            <RowDefinition Height="0*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="5" />
             <ColumnDefinition Width="150" />
             <ColumnDefinition Width="20" />
             <ColumnDefinition Width="150" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="150" />
             <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
+        
+        <!--BLAZOR SIDE-->
 
-        <!--WPF SIDE-->
-        <TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4"  Text="{Binding Text}"></TextBlock>
-
-        <Border Grid.Row="1" Grid.Column="1" BorderBrush="Transparent" BorderThickness="1" CornerRadius="250" >
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="14" />
-                    <RowDefinition Height="49" />
-                </Grid.RowDefinitions>
-
-                <Border Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" BorderBrush="#FF7B6AF1" BorderThickness="2" Margin="0,7,0,0" CornerRadius="3">
-                    <TextBox TextWrapping="Wrap" Text="{Binding Username}" 
-                             VerticalAlignment="Center" BorderBrush="{x:Null}" FontSize="18"/>
-                </Border>
-                <TextBlock FontSize="13" HorizontalAlignment="Left" Margin="10,-3,0,0" Padding="5,0,5,0" 
-                            Foreground="#FF7B6AF1" Background="White">Username</TextBlock>
-            </Grid>
+        <Border Grid.Row="1" Grid.Column="5" BorderBrush="Transparent" BorderThickness="1" CornerRadius="250" Height="50" >
+            <local:MudBlazorButtonWrap Text="Connect"/>
         </Border>
 
-        <Border Grid.Row="2" Grid.Column="1" BorderBrush="Transparent" BorderThickness="1" CornerRadius="250" >
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="14" />
-                    <RowDefinition Height="49" />
-                </Grid.RowDefinitions>
-
-                <Border Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" BorderBrush="#FF7B6AF1" BorderThickness="2" Margin="0,7,0,0" CornerRadius="3">
-                    <PasswordBox x:Name="PasswordBox" VerticalAlignment="Center" BorderBrush="{x:Null}" PasswordChanged="PasswordBox_OnPasswordChanged"
-                                 FontSize="18" />
-                </Border>
-                <TextBlock FontSize="13" HorizontalAlignment="Left" Margin="10,-3,0,0" Padding="5,0,5,0" 
-                           Foreground="#FF7B6AF1" Background="White">Password</TextBlock>
-            </Grid>
+        <Border Grid.Row="3" Grid.Column="5" BorderBrush="Transparent" BorderThickness="1" CornerRadius="250" Height="50" >
+            <local:MudBlazorButtonWrap Text="Send"/>
         </Border>
-
-        <Button Grid.Column="1" Grid.Row="3" Click="Button_Click"  Style="{StaticResource MyButtonStyle}"
-                Content="{Binding ButtonText}" Foreground="White" 
-                FontSize="16" FontWeight="DemiBold" Background="#FF5D47E0" >
-        </Button>
-
-        <Button Grid.Column="1" Grid.Row="5" Click="ButtonBase_OnClick"  
-                Style="{StaticResource MyButtonStyle}"
-                Content="{Binding ButtonLogoutText}" Foreground="White" 
-                FontSize="16" FontWeight="DemiBold" Background="#FF5D47E0" >
-        </Button>
-
-
-
-<!--BLAZOR SIDE-->
-        <Border Grid.Row="1" Grid.Column="3" BorderBrush="Transparent" BorderThickness="1" CornerRadius="250" >
-            <local:WpfTextfieldWrap Label="Username"/>
-        </Border>
-
-        <Border Grid.Row="2" Grid.Column="3" BorderBrush="Transparent" BorderThickness="1" CornerRadius="250" >
-            <local:WpfTextfieldWrap Label="Password" InputType="Password"/>
-        </Border>
-
         <Border Grid.Row="3" Grid.Column="3" BorderBrush="Transparent" BorderThickness="1" CornerRadius="250" >
-            <local:MudBlazorButtonWrap Text="Login"/>
+            <local:WpfTextfieldWrap Label="Send"/>
         </Border>
-
-        <Border Grid.Row="5" Grid.Column="3" BorderBrush="Transparent" BorderThickness="1" CornerRadius="250" >
-            <local:MudBlazorButtonWrap Text="Logout"/>
+        <Border Grid.Row="5" Grid.Column="2" BorderBrush="Transparent" BorderThickness="1" CornerRadius="250"  
+                Grid.ColumnSpan="4"
+                Grid.RowSpan="5">
+            <!--<local:WpfTextAreaWrap Label="Communication log"/>-->
+            <local:WpfTextAreaWrap />
         </Border>
-
+        
     </Grid>
 </Window>
