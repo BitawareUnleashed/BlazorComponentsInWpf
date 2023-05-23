@@ -10,7 +10,7 @@
     <Grid>
         <wpf:BlazorWebView x:Name="BlazorWebView"
                            HostPage="wwwroot/index.html" 
-                           Services="{DynamicResource services}">
+                           Services="{DynamicResource services}" HorizontalAlignment="Center" VerticalAlignment="Center" Height="{Binding Height}" Width="{Binding Width}">
             <wpf:BlazorWebView.RootComponents>
                 <wpf:RootComponent x:Name="buttonParameters" Selector="#app" 
                                    ComponentType="{x:Type local:MudButtonWrap}" />

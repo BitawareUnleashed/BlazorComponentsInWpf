@@ -17,6 +17,26 @@ namespace WpfMudBlazor
         private string id = string.Empty;
         private string buttonImage = string.Empty;
 
+        private string htmlStyle = string.Empty;
+        public string HtmlStyle
+        {
+            get
+            {
+                return htmlStyle;
+            }
+            set
+            {
+                htmlStyle = value;
+                buttonParameters.Parameters = new Dictionary<string, object>()
+                {
+                    { "ButtonId", Id },
+                    { "ButtonText", Text },
+                    { "HtmlStyle", HtmlStyle }
+                }!;
+                OnPropertyChanged(nameof(HtmlStyle));
+            }
+        }
+
         public string Id
         {
             get => id;
@@ -28,7 +48,7 @@ namespace WpfMudBlazor
                     { "ButtonId", Id },
                     { "ButtonText", Text }
                 }!;
-                
+
                 OnPropertyChanged(nameof(Id));
             }
         }

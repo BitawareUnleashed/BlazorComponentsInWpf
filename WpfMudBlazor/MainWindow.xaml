@@ -13,7 +13,7 @@
             <RowDefinition Height="68" />
             <RowDefinition Height="68" />
             <RowDefinition Height="68" />
-            <RowDefinition Height="9"/>
+            <RowDefinition Height="150"/>
             <RowDefinition Height="50"/>
             <RowDefinition Height="96"/>
             <RowDefinition Height="*"/>
@@ -57,17 +57,93 @@
             <ComboBoxItem>921600</ComboBoxItem>
         </ComboBox>
 
+        <Grid Grid.Row="4" Grid.ColumnSpan="7" Grid.Column="3" Margin="0,10" Background="LightGray" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Row="0" Grid.Column="0" BorderBrush="Transparent"  >
+                <local:WpfButtonWrap Text="1" Id="1-button" HtmlStyle="height: 48px" Height="52" Width="65"/>
+            </Border>
+            <Border Grid.Row="0" Grid.Column="1" BorderBrush="Transparent"  >
+                <local:WpfButtonWrap Text="2" Id="2-button" HtmlStyle="height: 48px" Height="52" Width="65"/>
+            </Border>
+            <Border Grid.Row="0" Grid.Column="2" BorderBrush="Transparent"  >
+                <local:WpfButtonWrap Text="3" Id="3-button" HtmlStyle="height: 48px" Height="52" Width="65"/>
+            </Border>
+            <Border Grid.Row="0" Grid.Column="3" BorderBrush="Transparent"  >
+                <local:WpfButtonWrap Text="4" Id="4-button" HtmlStyle="height: 48px" Height="52" Width="65"/>
+            </Border>
+            <Border Grid.Row="0" Grid.Column="4" BorderBrush="Transparent"  >
+                <local:WpfButtonWrap Text="5" Id="5-button" HtmlStyle="height: 48px" Height="52" Width="65"/>
+            </Border>
+            <Border Grid.Row="0" Grid.Column="5" BorderBrush="Transparent"  >
+                <local:WpfButtonWrap Text="6" Id="6-button" HtmlStyle="height: 48px" Height="52" Width="65"/>
+            </Border>
+            <Border Grid.Row="0" Grid.Column="6" BorderBrush="Transparent"  >
+                <local:WpfButtonWrap Text="7" Id="7-button" HtmlStyle="height: 48px" Height="52" Width="65"/>
+            </Border>
+            <Border Grid.Row="0" Grid.Column="7" BorderBrush="Transparent"  >
+                <local:WpfButtonWrap Text="8" Id="8-button" HtmlStyle="height: 48px" Height="52" Width="65"/>
+            </Border>
+            <Border Grid.Row="0" Grid.Column="8" BorderBrush="Transparent"  >
+                <local:WpfButtonWrap Text="9" Id="9-button" HtmlStyle="height: 48px" Height="52" Width="65"/>
+            </Border>
+
+
+            <Border Grid.Row="1" Grid.Column="0" BorderBrush="Transparent"  >
+                <local:WpfButtonWrap Text="A" Id="A-button" HtmlStyle="height: 48px" Height="52" Width="65"/>
+            </Border>
+            <Border Grid.Row="1" Grid.Column="1" BorderBrush="Transparent"  >
+                <local:WpfButtonWrap Text="B" Id="B-button" HtmlStyle="height: 48px" Height="52" Width="65"/>
+            </Border>
+            <Border Grid.Row="1" Grid.Column="2" BorderBrush="Transparent"  >
+                <local:WpfButtonWrap Text="C" Id="C-button" HtmlStyle="height: 48px" Height="52" Width="65"/>
+            </Border>
+            <Border Grid.Row="1" Grid.Column="3" BorderBrush="Transparent"  >
+                <local:WpfButtonWrap Text="D" Id="D-button" HtmlStyle="height: 48px" Height="52" Width="65"/>
+            </Border>
+            <Border Grid.Row="1" Grid.Column="4" BorderBrush="Transparent"  >
+                <local:WpfButtonWrap Text="E" Id="E-button" HtmlStyle="height: 48px" Height="52" Width="65"/>
+            </Border>
+            <Border Grid.Row="1" Grid.Column="5" BorderBrush="Transparent"  >
+                <local:WpfButtonWrap Text="F" Id="F-button" HtmlStyle="height: 48px" Height="52" Width="65"/>
+            </Border>
+            <Border Grid.Row="1" Grid.Column="6" BorderBrush="Transparent"  >
+                <local:WpfButtonWrap Text="10" Id="10-button" HtmlStyle="height: 48px" Height="52" Width="65"/>
+            </Border>
+            <Border Grid.Row="1" Grid.Column="7" BorderBrush="Transparent"  >
+                <local:WpfButtonWrap Text="11" Id="11-button" HtmlStyle="height: 48px" Height="52" Width="65"/>
+            </Border>
+            <Border Grid.Row="1" Grid.Column="8" BorderBrush="Transparent"  >
+                <local:WpfButtonWrap Text="12" Id="12-button" HtmlStyle="height: 48px" Height="52" Width="65"/>
+            </Border>
+        </Grid>
+
+
         <!--BLAZOR SIDE-->
 
         <Border Grid.Row="1" Grid.Column="5" BorderBrush="Transparent" BorderThickness="1" CornerRadius="250" Height="50" >
-            <local:WpfButtonWrap Text="Connect" Id="connect-button"/>
+            <local:WpfButtonWrap Text="Connect" Id="connect-button" HtmlStyle="width:148px; height:48px" Height="48" Width="148"/>
         </Border>
 
         <Border Grid.Row="3" Grid.Column="5" BorderBrush="Transparent" BorderThickness="1" CornerRadius="250" Height="50" >
-            <local:WpfButtonWrap Text="Send" Id="send-button"/>
+            <local:WpfButtonWrap Text="Send" Id="send-button" HtmlStyle="width:148px; height:48px" Height="48" Width="148"/>
         </Border>
         <Border Grid.Row="3" Grid.Column="3" BorderBrush="Transparent" BorderThickness="1" CornerRadius="250" >
-            <local:WpfTextfieldWrap Label="Send"/>
+            <local:WpfTextfieldWrap Label="Send" />
         </Border>
         <Border Grid.Row="5" Grid.Column="2" BorderBrush="Transparent" BorderThickness="1" CornerRadius="0"  
                 Grid.ColumnSpan="8"

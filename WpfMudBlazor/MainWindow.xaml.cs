@@ -74,7 +74,7 @@ namespace WpfMudBlazor
 
         public MainWindow()
         {
-            InitializeComponent();
+                InitializeComponent();
 
             this.DataContext = this;
             comboBoxCom.SelectedIndex = 0;
@@ -103,10 +103,65 @@ namespace WpfMudBlazor
                 case "send-button":
                     SerialCommunication.SerialCmdSend(command);
                     break;
+                case "1-button":
+                    SerialCommunication.SerialCmdSend((char)0x01);
+                    break;
+                case "2-button":
+                    SerialCommunication.SerialCmdSend((char)0x02);
+                    break;
+                case "3-button":
+                    SerialCommunication.SerialCmdSend((char)0x03);
+                    break;
+                case "4-button":
+                    SerialCommunication.SerialCmdSend((char)0x04);
+                    break;
+                case "5-button":
+                    SerialCommunication.SerialCmdSend((char)0x05);
+                    break;
+                case "6-button":
+                    SerialCommunication.SerialCmdSend((char)0x06);
+                    break;
+                case "7-button":
+                    SerialCommunication.SerialCmdSend((char)0x07);
+                    break;
+                case "8-button":
+                    SerialCommunication.SerialCmdSend((char)0x08);
+                    break;
+                case "9-button":
+                    SerialCommunication.SerialCmdSend((char)0x09);
+                    break;
+                case "A-button":
+                    SerialCommunication.SerialCmdSend((char)0x0A);
+                    break;
+                case "B-button":
+                    SerialCommunication.SerialCmdSend((char)0x0B);
+                    break;
+                case "C-button":
+                    SerialCommunication.SerialCmdSend((char)0x0C);
+                    break;
+                case "D-button":
+                    SerialCommunication.SerialCmdSend((char)0x0D);
+                    break;
+                case "E-button":
+                    SerialCommunication.SerialCmdSend((char)0x0E);
+                    break;
+                case "F-button":
+                    SerialCommunication.SerialCmdSend((char)0x0F);
+                    break;
+                case "10-button":
+                    SerialCommunication.SerialCmdSend((char)0x10);
+                    break;
+                case "11-button":
+                    var t = ((char)0x02).ToString() + ((char)2).ToString() + ((char)4).ToString() + ((char)13).ToString() + ((char)1).ToString() + ';' + ((char)64).ToString() + '|';
+                    SerialCommunication.SerialCmdSend(t);
+                    break;
+                case "12-button":
+                    var t1 = ((char)2).ToString() + ((char)2).ToString() + ((char)4).ToString() + ((char)13).ToString() + ((char)1).ToString() + ';' + ((char)2).ToString() + '|';
+                    SerialCommunication.SerialCmdSend(t1);
+                    break;
                 default:
                     break;
             }
-            Text = "";
         }
 
         private void OnPropertyChanged(string propertyName) =>

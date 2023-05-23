@@ -12,6 +12,7 @@ public partial class MudButtonWrap
     private EventAggregatorService? eventAggregatorService;
 
     [Parameter] public string ButtonText { get; set; } = "-";
+    [Parameter] public string HtmlStyle { get; set; } = string.Empty;
     [Parameter] [EditorRequired] public string ButtonId { get; set; } = "-";
 
 
