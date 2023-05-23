@@ -9,7 +9,7 @@ namespace WpfMudBlazor;
 
 public partial class MudTextArea
 {
-    [Parameter] public string LabelText { get; set; } = "";
+    [Parameter] public string Text { get; set; } = "";
 
 
 }

@@ -6,4 +6,4 @@ using System.Threading.Tasks;
 
 namespace WpfMudBlazor.Models;
 
-public record ButtonLogout(string Text);
+public record ButtonClicked(string Id);

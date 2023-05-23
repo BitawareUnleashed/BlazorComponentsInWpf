@@ -1,5 +1,7 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Windows;
+using System.Windows.Controls;
 using Microsoft.Extensions.DependencyInjection;
 using WpfMudBlazor.Models;
 using WpfMudBlazor.Services;
@@ -14,38 +16,13 @@ namespace WpfMudBlazor
         private IEventAggregator? eventAggregator;
         private EventAggregatorService? eventAggregatorService;
 
-        private string text = "No user logged in";
+        private string text = string.Empty;
 
-        private string username = string.Empty;
-        private string password = string.Empty;
-
-        private string buttonText = "LOGIN";
+        private string buttonText = string.Empty;
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
-
-        public string Username
-        {
-            get => username;
-            set
-            {
-                username = value;
-                eventAggregator?.Publish(new TextChanged(Username));
-                OnPropertyChanged(nameof(Username));
-            }
-        }
-
-        public string Password
-        {
-            get => password;
-            set
-            {
-                password = value;
-                eventAggregator?.Publish(new PasswordChanged(Password));
-                OnPropertyChanged(nameof(Password));
-            }
-        }
-        
+        public ISerialCommunication SerialCommunication { get; set; }
         public string ButtonText
         {
             get => buttonText;
@@ -77,56 +54,85 @@ namespace WpfMudBlazor
             }
         }
 
+        /// <summary>
+        /// Gets or sets the name of the COM.
+        /// </summary>
+        /// <value>
+        /// The name of the COM.
+        /// </value>
+        public string ComName { get; set; }
+
+        /// <summary>
+        /// Gets or sets the baud rate.
+        /// </summary>
+        /// <value>
+        /// The baud rate.
+        /// </value>
+        public string BaudRate { get; set; }
+
         public MainWindow()
         {
             InitializeComponent();
 
             this.DataContext = this;
+            comboBoxCom.SelectedIndex = 0;
+            comboBoxBaud.SelectedIndex = 0;
+
+            SerialCommunication =App.AppHost.Services.GetRequiredService<ISerialCommunication>();
+            SerialCommunication.SerialChanged += SerialCommunication_SerialChanged;
+            SerialCommunication.SerialConnected += SerialCommunication_SerialConnected;
+            SerialCommunication.SerialDisconnected += SerialCommunication_SerialDisconnected;
 
             eventAggregator = App.AppHost.Services.GetRequiredService<IEventAggregator>();
             eventAggregatorService = App.AppHost.Services.GetRequiredService<EventAggregatorService>();
             eventAggregatorService.OnButtonPressed += EventAggregatorService_OnButtonPressed; ;
             eventAggregatorService.OnTextChanged += EventAggregatorService_OnTextChanged;
-            eventAggregatorService.OnPasswordChanged += EventAggregatorService_OnPasswordChanged;
         }
 
-        private void EventAggregatorService_OnPasswordChanged(object? sender, string e)
+        private void SerialCommunication_SerialDisconnected(object? sender, string e)
         {
-            if (e != Password) Password = e;
+            throw new System.NotImplementedException();
+        }
+
+        private void SerialCommunication_SerialConnected(object? sender, string e)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        private void SerialCommunication_SerialChanged(object? sender, string e)
+        {
+            throw new System.NotImplementedException();
         }
 
         private void EventAggregatorService_OnTextChanged(object? sender, string e)
         {
-            if (e != Username) Username = e;
+            
         }
 
         private void EventAggregatorService_OnButtonPressed(object? sender, string e)
         {
-            Text = $"{e} with Username '{Username}' and password '{Password}'";
+            Text = "";
         }
-
-        
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            eventAggregator?.Publish(new ButtonLogin("User logged in from WPF"));
-        }
-
-        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
-        {
-            
-            eventAggregator?.Publish(new ButtonLogout("User logged out from WPF"));
-        }
-
-
 
         private void OnPropertyChanged(string propertyName) =>
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
-
-        private void PasswordBox_OnPasswordChanged(object sender, RoutedEventArgs e)
+        private void comboBoxCom_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-            
+            ComboBox comboBox = (ComboBox)sender;
+            ComboBoxItem selectedItem = (ComboBoxItem)comboBox.SelectedItem;
+
+            // Esempio di utilizzo del valore selezionato
+            ComName = selectedItem.Content.ToString();
+        }
+
+        private void comboBoxBaud_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            ComboBox comboBox = (ComboBox)sender;
+            ComboBoxItem selectedItem = (ComboBoxItem)comboBox.SelectedItem;
+
+            // Esempio di utilizzo del valore selezionato
+            BaudRate = selectedItem.Content.ToString();
         }
     }
 }

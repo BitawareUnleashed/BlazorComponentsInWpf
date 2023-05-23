@@ -7,33 +7,24 @@ using WpfMudBlazor.Models;
 
 namespace WpfMudBlazor.Services;
 
-public class EventAggregatorService : ISubscriber<ButtonLogin>, ISubscriber<ButtonLogout>, ISubscriber<TextChanged>, ISubscriber<PasswordChanged>
+public class EventAggregatorService : IEventAggregatorService, ISubscriber<ButtonClicked>, ISubscriber<TextChanged>
 {
 
     private readonly IEventAggregator eventAggregator;
 
     public event EventHandler<string> OnButtonPressed;
     public event EventHandler<string> OnTextChanged;
-    public event EventHandler<string> OnPasswordChanged;
 
-    void ISubscriber<ButtonLogin>.OnEventRaised(ButtonLogin e)
+    void ISubscriber<ButtonClicked>.OnEventRaised(ButtonClicked e)
     {
-        OnButtonPressed?.Invoke(this, e.Text);
-    }
-
-    void ISubscriber<ButtonLogout>.OnEventRaised(ButtonLogout e)
-    {
-        OnButtonPressed?.Invoke(this, e.Text);
+        OnButtonPressed?.Invoke(this, e.Id);
     }
 
     void ISubscriber<TextChanged>.OnEventRaised(TextChanged e)
     {
         OnTextChanged?.Invoke(this, e.Text);
     }
-    void ISubscriber<PasswordChanged>.OnEventRaised(PasswordChanged e)
-    {
-        OnPasswordChanged?.Invoke(this, e.Text);
-    }
+
 
 
     public EventAggregatorService(IEventAggregator ea)

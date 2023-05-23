@@ -2,7 +2,10 @@
 
 @inject IJSRuntime JSRuntime
 
-@namespace WpfMudBlazor
 <MudThemeProvider />
 
-<MudButton Variant="Variant.Filled" Color="Color.Primary" Size="Size.Large" OnClick="ButtonClicked" Style="width:148px; height:48px">@ButtonText</MudButton>
+<MudButton Variant="Variant.Filled"
+           Color="Color.Primary"
+           Size="Size.Large"
+           OnClick="()=>ButtonClicked(ButtonId)"
+           Style="width:148px; height:48px">@ButtonText</MudButton>

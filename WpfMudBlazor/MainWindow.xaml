@@ -53,25 +53,54 @@
             <ColumnDefinition Width="150" />
             <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
-        
+
+        <!--WPF SIDE-->
+        <ComboBox x:Name="comboBoxCom" Grid.Column="3" Grid.Row="1"
+          FontSize="16" Margin="0,10,0,10" SelectionChanged="comboBoxCom_SelectionChanged">
+            <ComboBoxItem>COM1</ComboBoxItem>
+            <ComboBoxItem>COM2</ComboBoxItem>
+            <ComboBoxItem>COM3</ComboBoxItem>
+            <ComboBoxItem>COM4</ComboBoxItem>
+            <ComboBoxItem>COM5</ComboBoxItem>
+            <ComboBoxItem>COM6</ComboBoxItem>
+            <ComboBoxItem>COM7</ComboBoxItem>
+            <ComboBoxItem>COM8</ComboBoxItem>
+            <ComboBoxItem>COM9</ComboBoxItem>
+            <ComboBoxItem>COM10</ComboBoxItem>
+        </ComboBox>
+
+        <ComboBox x:Name="comboBoxBaud" Grid.Column="3" Grid.Row="2"
+          FontSize="16" Margin="0,10,0,10" SelectionChanged="comboBoxBaud_SelectionChanged">
+            <ComboBoxItem>2400</ComboBoxItem>
+            <ComboBoxItem>4800</ComboBoxItem>
+            <ComboBoxItem>9600</ComboBoxItem>
+            <ComboBoxItem>19200</ComboBoxItem>
+            <ComboBoxItem>38400</ComboBoxItem>
+            <ComboBoxItem>57600</ComboBoxItem>
+            <ComboBoxItem>115200</ComboBoxItem>
+            <ComboBoxItem>230400</ComboBoxItem>
+            <ComboBoxItem>460800</ComboBoxItem>
+            <ComboBoxItem>921600</ComboBoxItem>
+        </ComboBox>
+
         <!--BLAZOR SIDE-->
 
         <Border Grid.Row="1" Grid.Column="5" BorderBrush="Transparent" BorderThickness="1" CornerRadius="250" Height="50" >
-            <local:MudBlazorButtonWrap Text="Connect"/>
+            <local:WpfButtonWrap Text="Connect" Id="connect-button"/>
         </Border>
 
         <Border Grid.Row="3" Grid.Column="5" BorderBrush="Transparent" BorderThickness="1" CornerRadius="250" Height="50" >
-            <local:MudBlazorButtonWrap Text="Send"/>
+            <local:WpfButtonWrap Text="Send" Id="send-button"/>
         </Border>
         <Border Grid.Row="3" Grid.Column="3" BorderBrush="Transparent" BorderThickness="1" CornerRadius="250" >
             <local:WpfTextfieldWrap Label="Send"/>
         </Border>
-        <Border Grid.Row="5" Grid.Column="2" BorderBrush="Transparent" BorderThickness="1" CornerRadius="250"  
+        <Border Grid.Row="5" Grid.Column="2" BorderBrush="Black" BorderThickness="1" CornerRadius="0"  
                 Grid.ColumnSpan="4"
                 Grid.RowSpan="5">
             <!--<local:WpfTextAreaWrap Label="Communication log"/>-->
             <local:WpfTextAreaWrap />
         </Border>
-        
+
     </Grid>
 </Window>

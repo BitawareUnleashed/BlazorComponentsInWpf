@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -35,6 +29,7 @@ namespace WpfMudBlazor
                     services.AddSingleton<IEventAggregator, EventAggregator>();
                     services.AddSingleton<EventAggregatorService>();
 
+                    services.AddSingleton<ISerialCommunication, SerialCommunication>();
 
 
                     Resources.Add("services", services.BuildServiceProvider());
@@ -43,9 +38,6 @@ namespace WpfMudBlazor
                     configuration = new ConfigurationBuilder()
                         .AddJsonFile(@"appsettings.json")
                         .Build();
-
-                    //services.AddDbContext<SuperheroContext>(options =>
-                    //    options.UseSqlServer(configuration.GetConnectionString("Default")));
                 })
                 .Build();
         }

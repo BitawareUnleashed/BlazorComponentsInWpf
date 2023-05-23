@@ -12,6 +12,7 @@ public partial class MudButtonWrap
     private EventAggregatorService? eventAggregatorService;
 
     [Parameter] public string ButtonText { get; set; } = "-";
+    [Parameter] [EditorRequired] public string ButtonId { get; set; } = "-";
 
 
     protected override void OnInitialized()
@@ -34,17 +35,8 @@ public partial class MudButtonWrap
         StateHasChanged();
     }
 
-    private void ButtonClicked()
+    private void ButtonClicked(string id)
     {
-        switch (ButtonText)
-        {
-            case "Login":
-                eventAggregator?.Publish(new ButtonLogin($"User logged in from Blazor"));
-                break;
-            case "Logout":
-                eventAggregator?.Publish(new ButtonLogin($"User logged out from Blazor"));
-                break;
-        }
-        
+        eventAggregator?.Publish(new ButtonClicked(id));
     }
 }

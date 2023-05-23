@@ -32,14 +32,6 @@ namespace WpfMudBlazor
                 OnPropertyChanged(nameof(Id));
             }
         }
-
-        public static readonly DependencyProperty MyTypeProperty = DependencyProperty.Register(
-                "MyType", typeof(Type),
-                typeof(MainWindow)
-                );
-
-        public Type MyType { get; set; }
-
         public string Text
         {
             get => text;
