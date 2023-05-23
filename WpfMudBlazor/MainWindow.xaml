@@ -6,33 +6,7 @@
         xmlns:blazor="clr-namespace:Microsoft.AspNetCore.Components.WebView.Wpf;assembly=Microsoft.AspNetCore.Components.WebView.Wpf"
         xmlns:local="clr-namespace:WpfMudBlazor"
         mc:Ignorable="d"
-        Title="MainWindow" Height="850" Width="550">
-    <Window.Resources>
-        <!-- This style is used for buttons, to remove the WPF default 'animated' mouse over effect -->
-        <Style x:Key="MyButtonStyle" TargetType="Button">
-            <Setter Property="OverridesDefaultStyle" Value="True"/>
-            <Setter Property="Margin" Value="0"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border Name="border" 
-                                BorderThickness="1"
-                                Padding="0,0" 
-                                BorderBrush="Transparent" 
-                                CornerRadius="4" 
-                                Background="{TemplateBinding Background}">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="border" Property="Background" Value="#4426DB" />
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-    </Window.Resources>
+        Title="Serial Communication Blazor Hybrid" Height="850" Width="700">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50" />
@@ -46,14 +20,14 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="5" />
-            <ColumnDefinition Width="150" />
+            <ColumnDefinition Width="10" />
             <ColumnDefinition Width="20" />
             <ColumnDefinition Width="150" />
             <ColumnDefinition Width="20" />
             <ColumnDefinition Width="150" />
             <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
-
+        <TextBlock Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="4" HorizontalAlignment="Center" FontSize="32" FontWeight="Black" >Hello, Blazor Conf 2023!</TextBlock>
         <!--WPF SIDE-->
         <ComboBox x:Name="comboBoxCom" Grid.Column="3" Grid.Row="1"
           FontSize="16" Margin="0,10,0,10" SelectionChanged="comboBoxCom_SelectionChanged">
@@ -95,8 +69,8 @@
         <Border Grid.Row="3" Grid.Column="3" BorderBrush="Transparent" BorderThickness="1" CornerRadius="250" >
             <local:WpfTextfieldWrap Label="Send"/>
         </Border>
-        <Border Grid.Row="5" Grid.Column="2" BorderBrush="Black" BorderThickness="1" CornerRadius="0"  
-                Grid.ColumnSpan="4"
+        <Border Grid.Row="5" Grid.Column="2" BorderBrush="Transparent" BorderThickness="1" CornerRadius="0"  
+                Grid.ColumnSpan="8"
                 Grid.RowSpan="5">
             <!--<local:WpfTextAreaWrap Label="Communication log"/>-->
             <local:WpfTextAreaWrap />

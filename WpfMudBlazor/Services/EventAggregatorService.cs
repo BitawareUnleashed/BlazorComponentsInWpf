@@ -7,7 +7,8 @@ using WpfMudBlazor.Models;
 
 namespace WpfMudBlazor.Services;
 
-public class EventAggregatorService : IEventAggregatorService, ISubscriber<ButtonClicked>, ISubscriber<TextChanged>
+public class EventAggregatorService : IEventAggregatorService, 
+    ISubscriber<ButtonClicked>, ISubscriber<TextChanged>
 {
 
     private readonly IEventAggregator eventAggregator;

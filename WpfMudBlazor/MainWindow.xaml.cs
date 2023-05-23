@@ -16,6 +16,8 @@ namespace WpfMudBlazor
         private IEventAggregator? eventAggregator;
         private EventAggregatorService? eventAggregatorService;
 
+        private string command = string.Empty;
+
         private string text = string.Empty;
 
         private string buttonText = string.Empty;
@@ -60,7 +62,7 @@ namespace WpfMudBlazor
         /// <value>
         /// The name of the COM.
         /// </value>
-        public string ComName { get; set; }
+        public string ComName { get; set; } = "COM1";
 
         /// <summary>
         /// Gets or sets the baud rate.
@@ -68,7 +70,7 @@ namespace WpfMudBlazor
         /// <value>
         /// The baud rate.
         /// </value>
-        public string BaudRate { get; set; }
+        public int BaudRate { get; set; } = 9600;
 
         public MainWindow()
         {
@@ -79,9 +81,6 @@ namespace WpfMudBlazor
             comboBoxBaud.SelectedIndex = 0;
 
             SerialCommunication =App.AppHost.Services.GetRequiredService<ISerialCommunication>();
-            SerialCommunication.SerialChanged += SerialCommunication_SerialChanged;
-            SerialCommunication.SerialConnected += SerialCommunication_SerialConnected;
-            SerialCommunication.SerialDisconnected += SerialCommunication_SerialDisconnected;
 
             eventAggregator = App.AppHost.Services.GetRequiredService<IEventAggregator>();
             eventAggregatorService = App.AppHost.Services.GetRequiredService<EventAggregatorService>();
@@ -89,28 +88,24 @@ namespace WpfMudBlazor
             eventAggregatorService.OnTextChanged += EventAggregatorService_OnTextChanged;
         }
 
-        private void SerialCommunication_SerialDisconnected(object? sender, string e)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        private void SerialCommunication_SerialConnected(object? sender, string e)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        private void SerialCommunication_SerialChanged(object? sender, string e)
-        {
-            throw new System.NotImplementedException();
-        }
-
         private void EventAggregatorService_OnTextChanged(object? sender, string e)
         {
-            
+            command = e;
         }
 
         private void EventAggregatorService_OnButtonPressed(object? sender, string e)
         {
+            switch (e)
+            {
+                case "connect-button":
+                    SerialCommunication.ConnectToSerial(ComName, BaudRate);
+                    break;
+                case "send-button":
+                    SerialCommunication.SerialCmdSend(command);
+                    break;
+                default:
+                    break;
+            }
             Text = "";
         }
 
@@ -132,7 +127,8 @@ namespace WpfMudBlazor
             ComboBoxItem selectedItem = (ComboBoxItem)comboBox.SelectedItem;
 
             // Esempio di utilizzo del valore selezionato
-            BaudRate = selectedItem.Content.ToString();
+             int.TryParse(selectedItem.Content.ToString(), out int baudRate);
+            BaudRate= baudRate;
         }
     }
 }
